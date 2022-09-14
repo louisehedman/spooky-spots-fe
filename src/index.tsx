@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Home from './components/pages/home/Home';
+import About from './components/pages/about/About';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +17,8 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
       </Route>
     </Routes>
   </BrowserRouter>
