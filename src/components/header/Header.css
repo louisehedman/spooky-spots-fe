@@ -1,0 +1,12 @@
+.nav-link,
+.dropdown-item {
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  color: black !important;
+}
+
+.dropdown-item:hover {
+  color: black !important;
+}
