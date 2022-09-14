@@ -9,7 +9,7 @@ const Header: React.FC = () => {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark relative-top m-0 bg-opacity-75">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          <img className="img-fluid" src="/logo192.png" alt="Logo placeholder" />
+          <img className="img-fluid" src="/spookyspotslogo.png" alt="spooky spots logo" />
         </Link>
         <button
           className="navbar-toggler"
