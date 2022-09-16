@@ -12,3 +12,9 @@ export interface IUser {
     email?: string;
     password?: string;
   }
+
+  export interface IAuthContext {
+    signedIn: boolean | undefined;
+    handleLogin: (parameter: string) => void;
+    auth: () => boolean;
+  }
