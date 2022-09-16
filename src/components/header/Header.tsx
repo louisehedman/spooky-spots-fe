@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { AuthContext } from '../services/auth/AuthProvider';
 import "./Header.css";
 
 
 const Header: React.FC = () => {
+  const auth = useContext(AuthContext);
+
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark relative-top m-0 bg-opacity-75">
@@ -37,6 +40,61 @@ const Header: React.FC = () => {
               <Link className="nav-link" to="/about" style={{ color: "white" }}>
                 About
               </Link>
+            </li>
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle"
+                to={auth?.signedIn ? `/user` : "/"}
+                style={{ color: "white" }}
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                User
+              </Link>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+                style={{
+                  backgroundColor: "black",
+                  boxShadow: "0px 14px 35px 2px rgba(255,255,255,0.5)",
+                  opacity: 0.9,
+                }}
+              >
+                {auth?.signedIn ? (
+                  <>
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/"
+                        style={{ color: "white" }}
+                        onClick={auth.handleLogout}
+                      >
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <><li>
+                          <Link
+                            className="dropdown-item"
+                            to="/login"
+                            style={{ color: "white" }}
+                          >
+                            Login
+                          </Link>
+                        </li><li>
+                            <Link
+                              className="dropdown-item"
+                              to="/register"
+                              style={{ color: "white" }}
+                            >
+                              Register
+                            </Link>
+                          </li></>
+                )}
+              </ul>
             </li>
             </ul>
         </div>

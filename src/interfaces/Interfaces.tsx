@@ -16,5 +16,6 @@ export interface IUser {
   export interface IAuthContext {
     signedIn: boolean | undefined;
     handleLogin: (parameter: string) => void;
+    handleLogout: () => void;
     auth: () => boolean;
   }

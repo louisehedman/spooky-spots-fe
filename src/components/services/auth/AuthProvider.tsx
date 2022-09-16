@@ -1,4 +1,6 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { API_URL } from "../../../helpers/Urls";
 import { IAuthContext } from "../../../interfaces/Interfaces";
 
 // Create the context
@@ -22,15 +24,37 @@ const AuthProvider = ({ children }: any) => {
     return false;
   };
 
-  const handleLogin = () => {
+  const handleLogin = (username: string) => {
     setSignedIn(true);
     localStorage.setItem("signedIn", "true");
+    localStorage.setItem("username", username);
   };
 
-// Gathers them in a variable we can pass as a value to the children
-const provider = {
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(
+        API_URL("logout"),
+        { body: "empty" },
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (res.status === 200) {
+        setSignedIn(false);
+        localStorage.removeItem("signedIn");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Gathers them in a variable we can pass as a value to the children
+  const provider = {
     signedIn,
     handleLogin,
+    handleLogout,
     auth,
   };
 
