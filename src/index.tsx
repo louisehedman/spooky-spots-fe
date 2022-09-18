@@ -9,6 +9,9 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Home from './components/pages/home/Home';
 import About from './components/pages/about/About';
 
+import RegisterForm from './components/pages/login/RegisterForm';
+import LoginForm from './components/pages/login/LoginForm';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -19,6 +22,8 @@ root.render(
       <Route path="/" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
       </Route>
     </Routes>
   </BrowserRouter>
