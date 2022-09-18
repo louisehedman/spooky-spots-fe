@@ -85,47 +85,61 @@ const LoginForm: React.FC = () => {
 
   return (
     <>
-      <div className="my-5">
-        <h2 className="text-center">Sign in</h2>
-        <p
-          ref={messageRef}
-          className="text-reset text-center"
-          style={
-            !message ? { visibility: "hidden" } : { visibility: "visible" }
-          }
-        >
-          {message}
-        </p>
-        <form
-          className="w-75 m-auto"
-          onSubmit={(e) => handleSubmit(e, API_URL("login"))}
-        >
-          <div className="form-group">
-            <label>Email:</label>
-            <input
-              ref={emailRef}
-              className="form-control m-auto my-3"
-              type="email"
-              name="email"
-              value={credentials.email}
-              onChange={handleChange}
-              placeholder="Email"
-              required
-            />
-            <label>Password:</label>
-            <input
-              ref={passwordRef}
-              className="form-control m-auto my-3"
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              placeholder="Password"
-              required
-            />
-            <input className="btn btn-success" type="submit" value="Login" />
+      <div className="container my-5">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <h2 className="card-header text-center">Sign in</h2>
+              <p
+                ref={messageRef}
+                className="text-reset text-center"
+                style={
+                  !message
+                    ? { visibility: "hidden" }
+                    : { visibility: "visible" }
+                }
+              >
+                {message}
+              </p>
+              <div className="card-body">
+                <form
+                  className="w-75 m-auto"
+                  onSubmit={(e) => handleSubmit(e, API_URL("login"))}
+                >
+                  <div className="form-group">
+                    <label>Email:</label>
+                    <input
+                      ref={emailRef}
+                      className="form-control m-auto my-3"
+                      type="email"
+                      name="email"
+                      value={credentials.email}
+                      onChange={handleChange}
+                      placeholder="Email"
+                      required
+                    />
+                    <label>Password:</label>
+                    <input
+                      ref={passwordRef}
+                      className="form-control m-auto my-3"
+                      type="password"
+                      name="password"
+                      value={credentials.password}
+                      onChange={handleChange}
+                      placeholder="Password"
+                      required
+                    />
+                    <input
+                      className="btn btn-success"
+                      type="submit"
+                      value="Login"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );
