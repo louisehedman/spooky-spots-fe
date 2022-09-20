@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
             <div className="col-md-7 col-lg-8">
               <p>
                 Copyright ©2022 All rights reserved by:
-                <a href="#" style={{ textDecoration: "none" }}>
+                <a href="/" style={{ textDecoration: "none" }}>
                   <strong className="text-warning"> Spooky Spots</strong>
                 </a>
               </p>
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                 <ul className="list-unstyled list-inline">
                   <li className="list-inline-item">
                     <a
-                      href="#"
+                      href="#0"
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li className="list-inline-item">
                     <a
-                      href="#"
+                      href="#0"
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li className="list-inline-item">
                     <a
-                      href="#"
+                      href="#0"
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
@@ -134,7 +134,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li className="list-inline-item">
                     <a
-                      href="#"
+                      href="#0"
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
@@ -143,7 +143,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li className="list-inline-item">
                     <a
-                      href="#"
+                      href="#0"
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
