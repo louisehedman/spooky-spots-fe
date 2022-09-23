@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { API_URL } from "../../../helpers/Urls";
-import { IAuthContext } from "../../../interfaces/Interfaces";
+import { API_URL } from "../../helpers/Urls";
+import { IAuthContext } from "../../interfaces/Interfaces";
 
 // Create the context
 export const AuthContext = createContext<IAuthContext | null>(null);
