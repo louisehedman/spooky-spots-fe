@@ -1,44 +1,69 @@
-import "ol/ol.css";
-import { RMap, ROSM, RLayerVector, RFeature, ROverlay, RStyle } from "rlayers";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  RMap,
+  ROSM,
+  RLayerVector,
+  RFeature,
+  ROverlay,
+  RPopup,
+} from "rlayers";
 import { fromLonLat } from "ol/proj";
 import { Coordinate } from "ol/coordinate";
 import { Point } from "ol/geom";
-import { useEffect, useState } from "react";
+import "ol/ol.css";
+import { ISpookySpot } from "../../interfaces/Interfaces";
+import { API_URL } from "../../helpers/Urls";
 
 const SpookyMap: React.FC = () => {
   const center = fromLonLat([14.662, 59.957]);
-  const [lat, setLat] = useState<any>();
-  const [lon, setLon] = useState<any>();
-  const [coords, setCoords] = useState<Record<string, Coordinate>>({
-    origin: [],
+  const [userLat, setUserLat] = useState<any>();
+  const [userLon, setUserLon] = useState<any>();
+  const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
+
+  const [userCoords, setUserCoords] = useState<Record<string, Coordinate>>({
+    origin: [userLat, userLon],
   });
 
   useEffect(() => {
     const getUserLocation = () => {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
-          setLat(position.coords.latitude);
-          setLon(position.coords.longitude);
-          setCoords({ origin: [lon, lat] });
-          console.log(coords);
+          setUserLat(position.coords.latitude);
+          setUserLon(position.coords.longitude);
+          setUserCoords({ origin: [userLon, userLat] })
         }
       );
     };
-
     getUserLocation();
-  }, [lat, lon]);
+  }, [userLat, userLon]);
+
+  console.log(userCoords)
+
+  useEffect(() => {
+    const fetchSpookySpots = async () => {
+      try {
+        await axios.get(API_URL("spookySpots")).then((response: any) => {
+          setSpookySpots(response.data.spookySpots);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSpookySpots();
+  }, []);
 
   return (
     <div className="container mb-5">
       <h2 className="text-center my-5">Spooky map</h2>
       <RMap
         width={"100%"}
-        height={"60vh"}
+        height={"70vh"}
         initial={{ center: center, zoom: 5 }}
       >
         <ROSM />
         <RLayerVector zIndex={10}>
-          <RFeature geometry={new Point(fromLonLat(coords.origin))}>
+          <RFeature geometry={new Point(fromLonLat(userCoords.origin))}>
             <ROverlay className="no-interaction">
               <img
                 src={"/spookyspotslogo.png"}
@@ -54,11 +79,68 @@ const SpookyMap: React.FC = () => {
                 alt="location marker"
               />
             </ROverlay>
+
+            <RPopup trigger={"click" && "hover"} className="example-overlay">
+              <div className="card text-center">
+                <p className="card-header">
+                  <strong>Your position</strong>
+                </p>
+              </div>
+            </RPopup>
           </RFeature>
         </RLayerVector>
+
+        <RLayerVector zIndex={10}>
+          {spookySpots.map((spookySpot: ISpookySpot, index: any) => {
+            return (
+              <RFeature
+                key={index}
+                geometry={
+                  new Point(fromLonLat(spookySpot.location.coordinates))
+                }
+              >
+                <ROverlay className="no-interaction">
+                  <img
+                    src={"/spookyspotslogo.png"}
+                    style={{
+                      position: "relative",
+                      top: -18,
+                      left: -18,
+                      userSelect: "none",
+                      pointerEvents: "none",
+                    }}
+                    width={36}
+                    height={36}
+                    alt="location marker"
+                  />
+                </ROverlay>
+                <RPopup
+                  trigger={"click" || "hover"}
+                  className="example-overlay"
+                >
+                  <div className="card w-25">
+                    <p className="card-header">
+                      <strong>{spookySpot.name}</strong>
+                    </p>
+                    <div className="card-body text-center">
+                      <img
+                        className="img-fluid"
+                        style={{
+                          width: "90%",
+                        }}
+                        src={`${spookySpot.image}`}
+                        alt={`${spookySpot.name}`}
+                      />
+                    </div>
+                  </div>
+                </RPopup>
+              </RFeature>
+            );
+          })}
+        </RLayerVector>
       </RMap>
-      <p>{lat}</p>
-      <p>{lon}</p>
+      <p>{userLat}</p>
+      <p>{userLon}</p>
     </div>
   );
 };
