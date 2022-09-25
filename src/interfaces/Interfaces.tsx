@@ -19,3 +19,24 @@ export interface IUser {
     handleLogout: () => void;
     auth: () => boolean;
   }
+
+  export interface IGhostType {
+    type: string | undefined;
+    description: string | undefined;
+  }
+
+  export interface ISpookySpot {
+   name: string | undefined;
+   address: string | undefined;
+   postalCode?: string | undefined;
+   country: string | undefined;
+   location: {
+    type: string,
+    coordinates: number[]
+  }
+   description: string | undefined;
+   image?: string | undefined;
+   createdAt: Date;
+   rating: number | undefined;
+   ghostTypes: Array<object> | undefined;
+  }
