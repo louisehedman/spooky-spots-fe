@@ -26,6 +26,7 @@ export interface IUser {
   }
 
   export interface ISpookySpot {
+   _id: string | undefined;
    name: string | undefined;
    address: string | undefined;
    postalCode?: string | undefined;
