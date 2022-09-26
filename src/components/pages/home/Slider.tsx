@@ -29,8 +29,9 @@ const SpookySpotSlider: React.FC = () => {
     .reverse();
 
   return (
-    <div className="container px-4 pt-4 text-white">
-      <h2 className="text-center">Our SpookySpots</h2>
+    <div className="container py-4 px-4 pt-4 text-white">
+      <div className="card bg-secondary">
+      <h2 className="text-center py-2">Latest added SpookySpots</h2>
       <Carousel className="bg-secondary rounded w-100 mb-4">
         {spookySpotsClone
           .slice(0, 2)
@@ -45,7 +46,7 @@ const SpookySpotSlider: React.FC = () => {
                 interval={5000}
               >
                 <img
-                  className="img-fluid"
+                  className="img-fluid border"
                   src={`${spookySpot.image}`}
                   alt={"slide" + index}
                   width="10px"
@@ -68,6 +69,7 @@ const SpookySpotSlider: React.FC = () => {
             );
           })}
       </Carousel>
+    </div>
     </div>
   );
 };
