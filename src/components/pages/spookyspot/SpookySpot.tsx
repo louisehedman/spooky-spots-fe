@@ -30,7 +30,29 @@ const SpookySpot: React.FC = () => {
     getSpookySpot();
   }, [slug]);
 
-  return <></>;
+  return (
+    <div>
+      <div className="container px-4 pt-4 rounded w-100 mb-4 px-4 pb-4 py-4">
+        <div className="text-center mb-4 py-4">
+          <h2 className="text-center py-2">{spookySpot?.name}</h2>
+          <img
+            className="mx-auto d-block img-fluid"
+            src={`${spookySpot?.image}`}
+            alt={`${spookySpot?.name}`}
+            width="20px"
+            style={{
+              width: "250px",
+              height: "250px",
+            }}
+          />
+        </div>
+        <div className="container px-4 pb-4 py-4 text-left shadow-lg">
+          <h3 className="text-center">Description</h3>
+          <p>{spookySpot?.description}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SpookySpot;
