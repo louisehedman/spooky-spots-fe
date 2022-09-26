@@ -3,10 +3,10 @@ import SpookySpotSlider from './Slider';
 
 const Home: React.FC = () => {
     return (
-        <>
-        <h1 className="text-center my-4">Welcome to Spooky Spots</h1>
+        <div className="container rounded" style={{backgroundColor: "#0e284a"}}>
+        <h1 className="text-center text-white my-4 py-4">Welcome to Spooky Spots</h1>
         <SpookySpotSlider />
-        </>
+        </div>
     )
 }
 

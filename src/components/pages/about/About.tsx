@@ -3,10 +3,10 @@ import React from "react";
 const About: React.FC = () => {
   return (
     <>
-      <div className="container my-3">
+      <div className="container rounded text-white my-4 py-4" style={{backgroundColor: "#0e284a"}}>
         <h2 className="text-center my-4">About Spooky Spots</h2>
 
-        <div className="card rounded mb-4 text-center">
+        <div className="card rounded mb-4 text-center border-0" style={{backgroundColor: "#0e284a"}}>
           <div className="card-body w-75 m-auto">
             <h3>Our history</h3>
             <p>

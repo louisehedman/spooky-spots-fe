@@ -54,8 +54,8 @@ const SpookyMap: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mb-5">
-      <h2 className="text-center my-5">Spooky map</h2>
+    <div className="container rounded mb-5 text-white" style={{backgroundColor: "#0e284a"}}>
+      <h2 className="text-center my-4 py-4">Spooky map</h2>
       <RMap
         width={"100%"}
         height={"70vh"}
@@ -80,9 +80,9 @@ const SpookyMap: React.FC = () => {
               />
             </ROverlay>
 
-            <RPopup trigger={"click" && "hover"} className="example-overlay">
+            <RPopup trigger={"click" || "hover"} className="example-overlay">
               <div className="card text-center">
-                <p className="card-header">
+                <p className="card-header" style={{backgroundColor: "#0e284a"}}>
                   <strong>Your position</strong>
                 </p>
               </div>
@@ -119,7 +119,7 @@ const SpookyMap: React.FC = () => {
                   className="example-overlay"
                 >
                   <div className="card w-25">
-                    <p className="card-header">
+                    <p className="card-header" style={{backgroundColor: "#0e284a"}}>
                       <strong>{spookySpot.name}</strong>
                     </p>
                     <div className="card-body text-center">

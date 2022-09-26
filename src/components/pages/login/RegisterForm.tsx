@@ -83,7 +83,7 @@ const RegisterForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
-              <h2 className="card-header text-center">Register</h2>
+              <h2 className="card-header text-center text-white" style={{backgroundColor: "#0e284a"}}>Register</h2>
 
               <p
                 ref={messageRef}

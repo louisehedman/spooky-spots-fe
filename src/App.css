@@ -1,8 +1,5 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2020/05/13/12/51/forest-5167332_1280.jpg");
   background-size: cover;
   background-position: center;
 }

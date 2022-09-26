@@ -30,9 +30,9 @@ const SpookySpotSlider: React.FC = () => {
 
   return (
     <div className="container py-4 px-4 pt-4 text-white">
-      <div className="card bg-secondary">
+      <div className="card border-0" style={{backgroundColor: "#0e284a"}}>
       <h2 className="text-center py-2">Latest added SpookySpots</h2>
-      <Carousel className="bg-secondary rounded w-100 mb-4">
+      <Carousel className="rounded w-100 mb-4" style={{backgroundColor: "#0e284a"}}>
         {spookySpotsClone
           .slice(0, 2)
           .map((spookySpot: ISpookySpot, index: any) => {
