@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_URL } from "../../../helpers/Urls";
 import { useEffect, useState } from "react";
 import { ISpookySpot } from "../../../interfaces/Interfaces";
+import { Link } from "react-router-dom";
 
 const SpookySpotSlider: React.FC = () => {
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
@@ -53,9 +54,15 @@ const SpookySpotSlider: React.FC = () => {
                     height: "250px",
                   }}
                 />
-
                 <Carousel.Caption>
                   <h3>{spookySpot.name}</h3>
+                  <div className="d-flex justify-content-center">
+                    <Link to={"/spookyspot/" + spookySpot.name}>
+                      <button className="p-1 mx-1 my-3 btn btn-light">
+                        Read more
+                      </button>
+                    </Link>
+                  </div>
                 </Carousel.Caption>
               </Carousel.Item>
             );

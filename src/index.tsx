@@ -12,6 +12,7 @@ import About from './components/pages/about/About';
 import RegisterForm from './components/pages/login/RegisterForm';
 import LoginForm from './components/pages/login/LoginForm';
 import SpookyMap from './components/map/SpookyMap';
+import SpookySpot from './components/pages/spookyspot/SpookySpot';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,7 +27,7 @@ root.render(
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/spookymap" element={<SpookyMap />} />
-
+        <Route path="/spookyspot/:slug" element={<SpookySpot />} />
       </Route>
     </Routes>
   </BrowserRouter>
