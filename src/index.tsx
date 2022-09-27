@@ -13,7 +13,7 @@ import RegisterForm from './components/pages/login/RegisterForm';
 import LoginForm from './components/pages/login/LoginForm';
 import SpookyMap from './components/pages/map/SpookyMap';
 import SpookySpot from './components/pages/spookyspot/SpookySpot';
-import GhostType from './components/pages/ghosttypes/GhostTypes';
+import GhostType from './components/pages/ghosttypes/GhostType';
 import GhostTypes from './components/pages/ghosttypes/GhostTypes';
 
 const root = ReactDOM.createRoot(
@@ -29,9 +29,9 @@ root.render(
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/spookymap" element={<SpookyMap />} />
-        <Route path="/spookyspot/:slug" element={<SpookySpot />} />
+        <Route path="/spookyspots/:slug" element={<SpookySpot />} />
         <Route path="/ghosttypes" element={<GhostTypes />} />
-        <Route path="/ghosttype/:slug" element={<GhostType />} />
+        <Route path="/ghosttypes/:slug" element={<GhostType />} />
       </Route>
     </Routes>
   </BrowserRouter>

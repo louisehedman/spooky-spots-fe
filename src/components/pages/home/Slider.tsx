@@ -12,7 +12,7 @@ const SpookySpotSlider: React.FC = () => {
   useEffect(() => {
     const fetchSpookySpots = async () => {
       try {
-        await axios.get(API_URL("spookySpots")).then((response: any) => {
+        await axios.get(API_URL("spookyspots")).then((response: any) => {
           setSpookySpots(response.data.spookySpots);
         });
       } catch (error) {
@@ -30,46 +30,49 @@ const SpookySpotSlider: React.FC = () => {
 
   return (
     <div className="container py-4 px-4 pt-4 text-white">
-      <div className="card border-0" style={{backgroundColor: "#0e284a"}}>
-      <h2 className="text-center py-2">Latest added SpookySpots</h2>
-      <Carousel className="rounded w-100 mb-4" style={{backgroundColor: "#0e284a"}}>
-        {spookySpotsClone
-          .slice(0, 2)
-          .map((spookySpot: ISpookySpot, index: any) => {
-            return (
-              <Carousel.Item
-                className="text-center pt-4 carousel"
-                style={{
-                  height: "500px",
-                }}
-                key={index}
-                interval={5000}
-              >
-                <img
-                  className="img-fluid border"
-                  src={`${spookySpot.image}`}
-                  alt={"slide" + index}
-                  width="10px"
+      <div className="card border-0" style={{ backgroundColor: "#0e284a" }}>
+        <h2 className="text-center py-2">Latest added SpookySpots</h2>
+        <Carousel
+          className="rounded w-100 mb-4"
+          style={{ backgroundColor: "#0e284a" }}
+        >
+          {spookySpotsClone
+            .slice(0, 2)
+            .map((spookySpot: ISpookySpot, index: any) => {
+              return (
+                <Carousel.Item
+                  className="text-center pt-4 carousel"
                   style={{
-                    width: "250px",
-                    height: "250px",
+                    height: "500px",
                   }}
-                />
-                <Carousel.Caption>
-                  <h3>{spookySpot.name}</h3>
-                  <div className="d-flex justify-content-center">
-                    <Link to={"/spookyspot/" + spookySpot.name}>
-                      <button className="p-1 mx-1 my-3 btn btn-light">
-                        Read more
-                      </button>
-                    </Link>
-                  </div>
-                </Carousel.Caption>
-              </Carousel.Item>
-            );
-          })}
-      </Carousel>
-    </div>
+                  key={index}
+                  interval={5000}
+                >
+                  <img
+                    className="img-fluid border"
+                    src={`${spookySpot.image}`}
+                    alt={"slide" + index}
+                    width="10px"
+                    style={{
+                      width: "250px",
+                      height: "250px",
+                    }}
+                  />
+                  <Carousel.Caption>
+                    <h3>{spookySpot.name}</h3>
+                    <div className="d-flex justify-content-center">
+                      <Link to={"/spookyspots/" + spookySpot.name}>
+                        <button className="p-1 mx-1 my-3 btn btn-light">
+                          Read more
+                        </button>
+                      </Link>
+                    </div>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
+        </Carousel>
+      </div>
     </div>
   );
 };

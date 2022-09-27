@@ -21,6 +21,7 @@ export interface IAuthContext {
 }
 
 export interface IGhostType {
+  _id: string | undefined;
   type: string | undefined;
   description: string | undefined;
 }
