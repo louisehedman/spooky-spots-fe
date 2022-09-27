@@ -12,8 +12,8 @@ import { fromLonLat } from "ol/proj";
 import { Coordinate } from "ol/coordinate";
 import { Point } from "ol/geom";
 import "ol/ol.css";
-import { ISpookySpot } from "../../interfaces/Interfaces";
-import { API_URL } from "../../helpers/Urls";
+import { ISpookySpot } from "../../../interfaces/Interfaces";
+import { API_URL } from "../../../helpers/Urls";
 
 const SpookyMap: React.FC = () => {
   const center = fromLonLat([14.662, 59.957]);
