@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 import { API_URL } from "../../../helpers/Urls";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   // Use the variables and functions from the AuthContext
@@ -19,6 +20,8 @@ const LoginForm: React.FC = () => {
     email: undefined,
     password: undefined,
   });
+  const navigate = useNavigate();
+
 
   // Sets focus on the email field when component mounts
   useEffect(() => {
@@ -63,6 +66,7 @@ const LoginForm: React.FC = () => {
       // Sets the context username to the username from response and sets context signedIn variable to true
       auth?.handleLogin(res.data.user);
       setMessage(`Welcome ${res.data.user}`);
+      navigate("/dashboard")
     } catch (err: any) {
       // If password is invalid
       if (err.response.status === 401) {
