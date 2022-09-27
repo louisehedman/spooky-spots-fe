@@ -89,7 +89,7 @@ const LoginForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
-              <h2 className="card-header text-center">Sign in</h2>
+              <h2 className="card-header text-center text-white" style={{backgroundColor: "#0e284a"}}>Sign in</h2>
               <p
                 ref={messageRef}
                 className="text-reset text-center"

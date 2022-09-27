@@ -72,9 +72,9 @@ const Footer: React.FC = () => {
                   <i className="fas fa-envelope mr-3"></i>{" "}
                   <a
                     className="text-white text-decoration-none"
-                    href="mailto:spookyspots@gmail.com"
+                    href="mailto:spookyspots2022@gmail.com"
                   >
-                    spookyspots@gmail.com
+                    spookyspots2022@gmail.com
                   </a>
                 </p>
                 <p>
@@ -105,50 +105,45 @@ const Footer: React.FC = () => {
             <div className="col-md-5 col-lg-4">
               <div className="text-center text-md-right">
                 <ul className="list-unstyled list-inline">
-                  <li className="list-inline-item">
-                    <a
-                      href="#0"
-                      className="btn-floating btn-sm text-white"
+                  <li className="list-inline-item
+                    
+                      btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
                       <i className="fab fa-facebook"></i>
-                    </a>
+                    
                   </li>
-                  <li className="list-inline-item">
-                    <a
-                      href="#0"
-                      className="btn-floating btn-sm text-white"
+                  <li className="list-inline-item
+                    
+                      
+                      btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
                       <i className="fab fa-twitter"></i>
-                    </a>
+                    
                   </li>
-                  <li className="list-inline-item">
-                    <a
-                      href="#0"
-                      className="btn-floating btn-sm text-white"
+                  <li className="list-inline-item
+                    
+                      
+                      btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
                       <i className="fab fa-instagram"></i>
-                    </a>
+                    
                   </li>
-                  <li className="list-inline-item">
-                    <a
-                      href="#0"
-                      className="btn-floating btn-sm text-white"
+                  <li className="list-inline-item
+                    
+                      btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
                       <i className="fab fa-linkedin-in"></i>
-                    </a>
                   </li>
-                  <li className="list-inline-item">
-                    <a
-                      href="#0"
-                      className="btn-floating btn-sm text-white"
+                  <li className="list-inline-item
+                    
+                      btn-floating btn-sm text-white"
                       style={{ fontSize: "23px" }}
                     >
                       <i className="fab fa-youtube"></i>
-                    </a>
                   </li>
                 </ul>
               </div>
