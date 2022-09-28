@@ -15,7 +15,10 @@ export interface IUserDetails {
 
 export interface IAuthContext {
   signedIn: boolean | undefined;
-  handleLogin: (parameter: string) => void;
+  role: string | undefined;
+  admin: boolean | undefined;
+  defaultUser: boolean | undefined;
+  handleLogin: (parameter1: string, parameter2: string) => void;
   handleLogout: () => void;
   auth: () => boolean;
 }

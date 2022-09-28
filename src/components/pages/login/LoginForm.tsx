@@ -22,7 +22,6 @@ const LoginForm: React.FC = () => {
   });
   const navigate = useNavigate();
 
-
   // Sets focus on the email field when component mounts
   useEffect(() => {
     if (emailRef.current) {
@@ -63,10 +62,9 @@ const LoginForm: React.FC = () => {
       );
       // Clears the password field on submit
       setCredentials({ ...credentials, password: "" });
-      // Sets the context username to the username from response and sets context signedIn variable to true
-      auth?.handleLogin(res.data.user);
-      setMessage(`Welcome ${res.data.user}`);
-      navigate("/dashboard")
+      // Sets the context username and role to the username and role from response and sets context signedIn variable to true
+      auth?.handleLogin(res.data.username, res.data.role);
+      navigate("/dashboard");
     } catch (err: any) {
       // If password is invalid
       if (err.response.status === 401) {
@@ -93,7 +91,12 @@ const LoginForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
-              <h2 className="card-header text-center text-white" style={{backgroundColor: "#0e284a"}}>Sign in</h2>
+              <h2
+                className="card-header text-center text-white"
+                style={{ backgroundColor: "#0e284a" }}
+              >
+                Sign in
+              </h2>
               <p
                 ref={messageRef}
                 className="text-reset text-center"

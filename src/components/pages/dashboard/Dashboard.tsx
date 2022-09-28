@@ -6,7 +6,7 @@ import { IUser } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../auth/AuthProvider";
 
 const Dashboard: React.FC = () => {
-const auth = useContext(AuthContext);
+  const auth = useContext(AuthContext);
   const [user, setUser] = useState<IUser>();
 
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ const auth = useContext(AuthContext);
           email: res.data.user.password,
           role: res.data.user.role,
         });
+        console.log(auth?.role);
       } catch (err: any) {
         if (err.response.status === 403) {
           auth?.handleLogout();
@@ -44,13 +45,15 @@ const auth = useContext(AuthContext);
     getUser();
   }, [auth, navigate]);
 
-    return (
-        <div className="container rounded mb-4 text-white" style={{backgroundColor: "#0e284a"}}>
-            <h2>Hi {user?.username}!</h2>
-            {user?.role === 0 && <p>You are signed in as user</p>}
-            {user?.role === 1 && <p>You are signed in as admin</p>}
-        </div>
-    )
-}
+  return (
+    <div
+      className="container rounded mb-4 text-white"
+      style={{ backgroundColor: "#0e284a" }}
+    >
+      <h2>Hi {user?.username}!</h2>
+      {auth?.admin && (<p>You are signed in as admin</p>)}
+    </div>
+  );
+};
 
 export default Dashboard;
