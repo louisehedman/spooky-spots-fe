@@ -17,8 +17,8 @@ const LoginForm: React.FC = () => {
   const [message, setMessage] = useState("");
   // User input variable
   const [credentials, setCredentials] = useState<IUserDetails>({
-    email: undefined,
-    password: undefined,
+    email: "",
+    password: "",
   });
   const navigate = useNavigate();
 

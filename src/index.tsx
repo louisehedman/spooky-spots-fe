@@ -17,6 +17,7 @@ import GhostType from './components/pages/ghosttypes/GhostType';
 import GhostTypes from './components/pages/ghosttypes/GhostTypes';
 import Dashboard from './components/pages/dashboard/Dashboard';
 import HandleUsers from './components/pages/dashboard/HandleUsers';
+import EditUser from './components/pages/dashboard/EditUser';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -36,6 +37,7 @@ root.render(
         <Route path="/ghosttypes" element={<GhostTypes />} />
         <Route path="/ghosttypes/:slug" element={<GhostType />} />
         <Route path="/dashboard/handleusers" element={<HandleUsers />} />
+        <Route path="/dashboard/handleusers/edituser" element={<EditUser />} />
       </Route>
     </Routes>
   </BrowserRouter>

@@ -14,9 +14,9 @@ const RegisterForm: React.FC = () => {
   const [message, setMessage] = useState("");
   // User input variable
   const [credentials, setCredentials] = useState<IUserDetails>({
-    username: undefined,
-    email: undefined,
-    password: undefined,
+    username: "",
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();

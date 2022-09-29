@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { IUser } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../auth/AuthProvider";
@@ -52,12 +52,17 @@ const HandleUsers: React.FC = () => {
   };
 
   return (
-    <div
-      className="container rounded mb-4 my-5"
-      style={{ backgroundColor: "#FFFFFF" }}
-    >
-      <section className="table-responsive">
-        <div className="card-body text-center">
+    <div className="container rounded py-5 my-5 text-white" style={{ backgroundColor: "#0e284a" }}>
+      <div className="row justify-content-center">
+                <div className="col-md-8">
+
+       <div className="card-header">
+                <h2>Handle users
+                    <Link to="/dashboard" className="btn btn-dark float-end mb-2">BACK</Link>
+                </h2>
+                </div>
+      <section className="" style={{ backgroundColor: "#FFFFFF" }}>
+        <div className="card-body text-center table-responsive">
           <table className="table table-hover" style={{ color: "#0e284a" }}>
             <thead>
               <tr>
@@ -76,10 +81,10 @@ const HandleUsers: React.FC = () => {
                     <td>{user.email}</td>
                     {user.role === 0 && <td>User</td>}
                     {user.role === 1 && <td>Admin</td>}
-                    <td>Update</td>
+                    <td><Link className="btn btn-warning btn-sm" to="edit-user">Edit user</Link></td>
                     <td>
                       <button
-                        className="btn btn-danger"
+                        className="btn btn-danger btn-sm"
                         onClick={() => deleteUser(user._id)}
                       >
                         Delete
@@ -92,6 +97,8 @@ const HandleUsers: React.FC = () => {
           </table>
         </div>
       </section>
+    </div>
+    </div>
     </div>
   );
 };
