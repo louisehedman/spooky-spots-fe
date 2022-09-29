@@ -52,6 +52,7 @@ const AuthProvider = ({ children }: any) => {
       );
       if (res.status === 200) {
         setSignedIn(false);
+        setRole("");
         localStorage.removeItem("signedIn");
         localStorage.removeItem("username");
         localStorage.removeItem("role");

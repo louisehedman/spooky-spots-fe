@@ -16,6 +16,7 @@ import SpookySpot from './components/pages/spookyspot/SpookySpot';
 import GhostType from './components/pages/ghosttypes/GhostType';
 import GhostTypes from './components/pages/ghosttypes/GhostTypes';
 import Dashboard from './components/pages/dashboard/Dashboard';
+import HandleUsers from './components/pages/dashboard/HandleUsers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -34,6 +35,7 @@ root.render(
         <Route path="/spookyspots/:slug" element={<SpookySpot />} />
         <Route path="/ghosttypes" element={<GhostTypes />} />
         <Route path="/ghosttypes/:slug" element={<GhostType />} />
+        <Route path="/dashboard/handleusers" element={<HandleUsers />} />
       </Route>
     </Routes>
   </BrowserRouter>

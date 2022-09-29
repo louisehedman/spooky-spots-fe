@@ -68,7 +68,7 @@ const Dashboard: React.FC = () => {
               <ul className="list-group list-group-flush">
                 {auth?.admin && (
                   <li className="list-group-item h5">
-                    <Link className="link-dark" to="/handleusers">
+                    <Link className="link-dark" to="handleusers">
                       Handle Users
                     </Link>
                   </li>
