@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { IUser } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../auth/AuthProvider";
@@ -47,11 +47,47 @@ const Dashboard: React.FC = () => {
 
   return (
     <div
-      className="container rounded mb-4 text-white"
+      className="container rounded mb-4 text-white my-4"
       style={{ backgroundColor: "#0e284a" }}
     >
-      <h2>Hi {user?.username}!</h2>
-      {auth?.admin && (<p>You are signed in as admin</p>)}
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <div className="card" style={{ backgroundColor: "#0e284a" }}>
+            <div className="card-header">
+              <h2>Hi {user?.username}!</h2>
+            </div>
+            <h4 className="card-title dashboard-title">
+              Welcome to your dashboard
+            </h4>
+            {auth?.admin && (
+              <h5 className="card-subtitle">You are signed in as admin</h5>
+            )}
+            <div className="card-body">
+              <h5 className="card-title">Here you can:</h5>
+
+              <ul className="list-group list-group-flush">
+                {auth?.admin && (
+                  <li className="list-group-item h5">
+                    <Link className="link-dark" to="/handleusers">
+                      Handle Users
+                    </Link>
+                  </li>
+                )}
+                <li className="list-group-item h5">
+                  <a className="link-dark" href="/mylists">
+                    Handle your saved spooky spots
+                  </a>
+                </li>
+                <li className="list-group-item h5">
+                  <a className="link-dark" href="/usersettings">
+                    Manage your settings
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
