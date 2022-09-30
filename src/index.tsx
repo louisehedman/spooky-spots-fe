@@ -37,7 +37,7 @@ root.render(
         <Route path="/ghosttypes" element={<GhostTypes />} />
         <Route path="/ghosttypes/:slug" element={<GhostType />} />
         <Route path="/dashboard/handleusers" element={<HandleUsers />} />
-        <Route path="/dashboard/handleusers/edituser" element={<EditUser />} />
+        <Route path="/dashboard/handleusers/edituser/:slug" element={<EditUser />} />
       </Route>
     </Routes>
   </BrowserRouter>

@@ -81,7 +81,7 @@ const HandleUsers: React.FC = () => {
                     <td>{user.email}</td>
                     {user.role === 0 && <td>User</td>}
                     {user.role === 1 && <td>Admin</td>}
-                    <td><Link className="btn btn-warning btn-sm" to="edit-user">Edit user</Link></td>
+                    <td><Link className="btn btn-warning btn-sm" to={"edituser/" + user._id}>Edit role</Link></td>
                     <td>
                       <button
                         className="btn btn-danger btn-sm"
