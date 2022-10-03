@@ -2,9 +2,9 @@ export interface IUser {
   _id: string;
   username: string | undefined;
   avatar?: string | undefined;
-  password: string | undefined;
+  password?: string | undefined;
   email: string | undefined;
-  role: number;
+  isAdmin: boolean | undefined;
 }
 
 export interface IUserDetails {
@@ -13,9 +13,16 @@ export interface IUserDetails {
   password?: string;
 }
 
+export interface IEditUser {
+  isAdmin?: boolean | undefined;
+  email?: string | undefined;
+}
+
 export interface IAuthContext {
   signedIn: boolean | undefined;
-  handleLogin: (parameter: string) => void;
+  admin: boolean | undefined;
+  defaultUser: boolean | undefined;
+  handleLogin: (parameter1: string, parameter2: string) => void;
   handleLogout: () => void;
   auth: () => boolean;
 }

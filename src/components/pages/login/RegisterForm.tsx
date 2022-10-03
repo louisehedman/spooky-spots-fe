@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 
@@ -13,10 +14,12 @@ const RegisterForm: React.FC = () => {
   const [message, setMessage] = useState("");
   // User input variable
   const [credentials, setCredentials] = useState<IUserDetails>({
-    username: undefined,
-    email: undefined,
-    password: undefined,
+    username: "",
+    email: "",
+    password: "",
   });
+
+  const navigate = useNavigate();
 
   // Sets focus on the username field when component mounts
   useEffect(() => {
@@ -64,6 +67,7 @@ const RegisterForm: React.FC = () => {
       );
       console.log(res);
       setMessage(`Registration successful`);
+      navigate("/login")
     } catch (err: any) {
       // Errors from mongoose uniqueValidator plugin
       if (err.response.data.includes("User validation failed: email")) {

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 import { API_URL } from "../../../helpers/Urls";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   // Use the variables and functions from the AuthContext
@@ -16,9 +17,10 @@ const LoginForm: React.FC = () => {
   const [message, setMessage] = useState("");
   // User input variable
   const [credentials, setCredentials] = useState<IUserDetails>({
-    email: undefined,
-    password: undefined,
+    email: "",
+    password: "",
   });
+  const navigate = useNavigate();
 
   // Sets focus on the email field when component mounts
   useEffect(() => {
@@ -60,9 +62,9 @@ const LoginForm: React.FC = () => {
       );
       // Clears the password field on submit
       setCredentials({ ...credentials, password: "" });
-      // Sets the context username to the username from response and sets context signedIn variable to true
-      auth?.handleLogin(res.data.user);
-      setMessage(`Welcome ${res.data.user}`);
+      // Sets the context username and role to the username and role from response and sets context signedIn variable to true
+      auth?.handleLogin(res.data.username, res.data.isAdmin);
+      navigate("/dashboard");
     } catch (err: any) {
       // If password is invalid
       if (err.response.status === 401) {
@@ -89,7 +91,12 @@ const LoginForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
-              <h2 className="card-header text-center text-white" style={{backgroundColor: "#0e284a"}}>Sign in</h2>
+              <h2
+                className="card-header text-center text-white"
+                style={{ backgroundColor: "#0e284a" }}
+              >
+                Sign in
+              </h2>
               <p
                 ref={messageRef}
                 className="text-reset text-center"

@@ -9,12 +9,20 @@ export const AuthContext = createContext<IAuthContext | null>(null);
 const AuthProvider = ({ children }: any) => {
   // Define all variables and functions to be passed down to children
   const [signedIn, setSignedIn] = useState(false);
+  //const [isAdmin, setIsAdmin] = useState("")
 
+  const admin = localStorage.getItem("isAdmin") === "true";
+  const defaultUser = localStorage.getItem("isAdmin") === "false";
+  
   useEffect(() => {
     const user = localStorage.getItem("signedIn");
     if (user === "true") {
       setSignedIn(true);
     }
+    /*const userRole = localStorage.getItem("isAdmin");
+    if (userRole !== "") {
+      setIsAdmin(isAdmin);
+    }*/
   }, []);
 
   const auth = () => {
@@ -24,10 +32,11 @@ const AuthProvider = ({ children }: any) => {
     return false;
   };
 
-  const handleLogin = (username: string) => {
+  const handleLogin = (username: string, isAdmin: string) => {
     setSignedIn(true);
     localStorage.setItem("signedIn", "true");
     localStorage.setItem("username", username);
+    localStorage.setItem("isAdmin", isAdmin);
   };
 
   const handleLogout = async () => {
@@ -43,7 +52,10 @@ const AuthProvider = ({ children }: any) => {
       );
       if (res.status === 200) {
         setSignedIn(false);
+        //setIsAdmin("");
         localStorage.removeItem("signedIn");
+        localStorage.removeItem("username");
+        localStorage.removeItem("isAdmin");
       }
     } catch (err) {
       console.log(err);
@@ -53,6 +65,9 @@ const AuthProvider = ({ children }: any) => {
   // Gathers them in a variable we can pass as a value to the children
   const provider = {
     signedIn,
+    //isAdmin,
+    admin,
+    defaultUser,
     handleLogin,
     handleLogout,
     auth,
