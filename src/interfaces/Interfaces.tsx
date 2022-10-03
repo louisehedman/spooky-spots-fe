@@ -4,7 +4,7 @@ export interface IUser {
   avatar?: string | undefined;
   password?: string | undefined;
   email: string | undefined;
-  role: number;
+  isAdmin: boolean | undefined;
 }
 
 export interface IUserDetails {
@@ -14,12 +14,12 @@ export interface IUserDetails {
 }
 
 export interface IEditUser {
-  role?: number | undefined;
+  isAdmin?: boolean | undefined;
+  email?: string | undefined;
 }
 
 export interface IAuthContext {
   signedIn: boolean | undefined;
-  role: string | undefined;
   admin: boolean | undefined;
   defaultUser: boolean | undefined;
   handleLogin: (parameter1: string, parameter2: string) => void;

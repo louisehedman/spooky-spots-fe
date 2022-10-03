@@ -79,9 +79,9 @@ const HandleUsers: React.FC = () => {
                   <tr key={index}>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
-                    {user.role === 0 && <td>User</td>}
-                    {user.role === 1 && <td>Admin</td>}
-                    <td><Link className="btn btn-warning btn-sm" to={"edituser/" + user._id}>Edit role</Link></td>
+                    {user.isAdmin === false && <td>User</td>}
+                    {user.isAdmin === true && <td>Admin</td>}
+                    <td><Link className="btn btn-warning btn-sm" to={"edituser/" + user._id}>Edit</Link></td>
                     <td>
                       <button
                         className="btn btn-danger btn-sm"

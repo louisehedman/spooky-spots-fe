@@ -29,9 +29,8 @@ const Dashboard: React.FC = () => {
           avatar: res.data.user.avatar,
           password: res.data.user.password,
           email: res.data.user.password,
-          role: res.data.user.role,
+          isAdmin: res.data.user.isAdmin,
         });
-        console.log(auth?.role);
       } catch (err: any) {
         if (err.response.status === 403) {
           auth?.handleLogout();

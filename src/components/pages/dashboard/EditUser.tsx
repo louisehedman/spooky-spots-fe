@@ -9,7 +9,8 @@ const EditUser: React.FC = () => {
   const auth = useContext(AuthContext);
   const [user, setUser] = useState<IUser>();
   const [state, setState] = useState<IEditUser>({
-    role: 0,
+    isAdmin: user?.isAdmin,
+    email: user?.email,
   });
   const [message, setMessage] = useState("");
   const { slug } = useParams();
@@ -31,6 +32,7 @@ const EditUser: React.FC = () => {
           withCredentials: true,
         });
         setUser(res.data.user);
+        setState({ isAdmin: res.data.user.isAdmin });
       } catch (error) {
         console.log(error);
       }
@@ -38,7 +40,7 @@ const EditUser: React.FC = () => {
     fetchUser();
   }, [slug]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setState({
       ...state,
@@ -61,7 +63,7 @@ const EditUser: React.FC = () => {
           withCredentials: true,
         }
       );
-      setMessage(`${user?.username}'s role updated`)
+      setMessage(`${user?.username}'s role updated`);
       console.log("res: ", res);
     } catch (err: any) {
       if (err.response.status === 401) {
@@ -75,60 +77,81 @@ const EditUser: React.FC = () => {
       className="container rounded my-4 mb-4 text-white"
       style={{ backgroundColor: "#0e284a" }}
     >
-      <div className="card border-0 col-lg-6 col-md-8 m-auto" style={{ backgroundColor: "#0e284a" }}>
-      <div className="card-header">
-        <h2>
-          Edit {user?.username}'s role
-          <Link
-            to="/dashboard/handleusers"
-            className="btn btn-dark float-end mb-2"
+      <div
+        className="card border-0 col-lg-6 col-md-8 m-auto"
+        style={{ backgroundColor: "#0e284a" }}
+      >
+        <div className="card-header">
+          <h2>
+            Edit {user?.username}
+            <Link
+              to="/dashboard/handleusers"
+              className="btn btn-dark float-end mb-2"
+            >
+              BACK
+            </Link>
+          </h2>
+        </div>
+        <div className="card-body">
+          <p
+            className="text-reset text-center"
+            style={
+              !message ? { visibility: "hidden" } : { visibility: "visible" }
+            }
           >
-            BACK
-          </Link>
-        </h2>
-      </div>
-      <div className="card-body">
-      <p
-                className="text-reset text-center"
-                style={
-                  !message
-                    ? { visibility: "hidden" }
-                    : { visibility: "visible" }
-                }
-              >
-                {message}
-              </p>
-        <form
-          className=""
-          onSubmit={(e) => handleSubmit(e, API_URL("users/" + user?._id))}
-        >
-          <div className="form-group">
-            <div className="mb-3 row">
-              <label htmlFor="role" className="col-sm-2 col-form-label">
-                Role
-              </label>
-              <div className="col-sm-10">
-                <select
-                  id="role"
-                  name="role"
-                  value={state.role}
+            {message}
+          </p>
+          <form
+            className="text-white text-center"
+            onSubmit={(e) => handleSubmit(e, API_URL("users/" + user?._id))}
+          >
+            <div className="form-group text-white">
+              <p className="d-block">Is admin?</p>
+              <label htmlFor="isUser">
+                No
+                <input
+                  className="form-check-input text-secondary ms-2 me-4 my-4"
+                  type="radio"
+                  name="isAdmin"
+                  checked={false === state.isAdmin}
+                  value="false"
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  className="form-select"
-                >
-                  <option value="0">Regular user</option>
-                  <option value="1">Admin</option>
-                </select>
+                />
+              </label>
+              <label htmlFor="isAdmin">
+                Yes
+                <input
+                  className="form-check-input ms-2 me-4 my-4"
+                  type="radio"
+                  name="isAdmin"
+                  checked={true === state.isAdmin}
+                  value="true"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </label>
+              <div className="form-group">
+                <label className="col-form-label">
+                  Email:{" "}
+                  <input
+                    type="text"
+                    placeholder={user?.email}
+                    name="email"
+                    value={state.email}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+              <div className="d-flex justify-content-center">
+                <input className="btn btn-success" type="submit" value="Edit" />
               </div>
             </div>
-            <div className="d-flex justify-content-center">
-            <input className="btn btn-success" type="submit" value="Edit" />
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

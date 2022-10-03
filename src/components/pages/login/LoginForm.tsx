@@ -63,7 +63,7 @@ const LoginForm: React.FC = () => {
       // Clears the password field on submit
       setCredentials({ ...credentials, password: "" });
       // Sets the context username and role to the username and role from response and sets context signedIn variable to true
-      auth?.handleLogin(res.data.username, res.data.role);
+      auth?.handleLogin(res.data.username, res.data.isAdmin);
       navigate("/dashboard");
     } catch (err: any) {
       // If password is invalid
