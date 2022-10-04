@@ -30,6 +30,7 @@ const Dashboard: React.FC = () => {
           password: res.data.user.password,
           email: res.data.user.password,
           isAdmin: res.data.user.isAdmin,
+          spookySpotList: res.data.user.spookySpotList
         });
       } catch (err: any) {
         if (err.response.status === 403) {

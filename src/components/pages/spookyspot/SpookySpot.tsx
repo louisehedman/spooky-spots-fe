@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../../helpers/Urls";
 import { ISpookySpot } from "../../../interfaces/Interfaces";
+import AddToListButton from "./AddToListButton";
 
 const SpookySpot: React.FC = () => {
   const [spookySpot, setSpookySpot] = useState<ISpookySpot>();
@@ -35,6 +36,9 @@ const SpookySpot: React.FC = () => {
       <div className="container px-4 pt-4 rounded w-100 mb-4 pb-4 py-4 my-4 text-white" style={{backgroundColor: "#0e284a"}}>
         <div className="card text-center mb-4 py-4 border-0" style={{backgroundColor: "#0e284a"}}>
           <h2 className="text-center py-4">{spookySpot?.name}</h2>
+          <AddToListButton
+              spookySpotId={spookySpot?._id}
+            />
           <img
             className="mx-auto d-block img-fluid"
             src={`${spookySpot?.image}`}
