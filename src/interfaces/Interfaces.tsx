@@ -5,6 +5,7 @@ export interface IUser {
   password?: string | undefined;
   email: string | undefined;
   isAdmin: boolean | undefined;
+  spookySpotList: Array<ISpookySpotListItem> | undefined;
 }
 
 export interface IUserDetails {
@@ -53,3 +54,12 @@ export interface ISpookySpot {
     }
   ];
 }
+
+export interface ISpookySpotListItem {
+  _id?: string | undefined;
+  spookySpotId: string | undefined;
+  comment: string | undefined;
+  hasVisited: boolean | undefined;
+  spookySpot?: ISpookySpot | undefined;
+}
+
