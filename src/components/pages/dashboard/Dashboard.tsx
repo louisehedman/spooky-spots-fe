@@ -74,9 +74,9 @@ const Dashboard: React.FC = () => {
                   </li>
                 )}
                 <li className="list-group-item h5">
-                  <a className="link-dark" href="/mylists">
+                  <Link className="link-dark" to="/spookyspotlist">
                     Handle your saved spooky spots
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-group-item h5">
                   <a className="link-dark" href="/usersettings">
