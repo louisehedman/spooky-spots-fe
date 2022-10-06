@@ -35,7 +35,7 @@ const EditListItem: React.FC = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(API_URL(`spookyspot-list/${listItemId}`), {
+        const res = await axios.get(API_URL(`get-list/${listItemId}`), {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -122,7 +122,7 @@ const EditListItem: React.FC = () => {
                 handleSubmit(
                   e,
                   API_URL(
-                    `edit-spookyspot-list-item/${userId}/${listItem?._id}`
+                    `edit-list-item/${userId}/${listItem?._id}`
                   )
                 )
               }

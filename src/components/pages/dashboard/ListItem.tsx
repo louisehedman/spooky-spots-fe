@@ -53,7 +53,7 @@ const ListItem: React.FC<Props> = ({ listItem, userId }) => {
         localStorage.getItem("signedIn")
       );
       return axios
-        .put(API_URL(`delete-spookyspot-list-item/${userId}/${listItemId}`), {
+        .put(API_URL(`delete-list-item/${userId}/${listItemId}`), {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
         })

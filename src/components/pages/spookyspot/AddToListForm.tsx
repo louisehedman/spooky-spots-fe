@@ -52,7 +52,7 @@ const AddToListForm: React.FC<Props> = ({ spookySpotId, setAddedToList }) => {
       <form
         className="w-90 m-auto text-black"
         onSubmit={(e) =>
-          handleSubmit(e, API_URL("create-spookyspot-list-item"))
+          handleSubmit(e, API_URL("create-list-item"))
         }
       >
         <div className="form-group  my-4">
