@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
           password: res.data.user.password,
           email: res.data.user.password,
           isAdmin: res.data.user.isAdmin,
-          spookySpotList: res.data.user.spookySpotList
+          spookySpotList: res.data.user.spookySpotList,
         });
       } catch (err: any) {
         if (err.response.status === 403) {
@@ -51,20 +51,20 @@ const Dashboard: React.FC = () => {
       style={{ backgroundColor: "#0e284a" }}
     >
       <div className="row justify-content-center">
-        <div className="col-md-8">
+        <div className="col-lg-10">
           <div className="card" style={{ backgroundColor: "#0e284a" }}>
             <div className="card-header">
               <h2>Hi {user?.username}!</h2>
+              <p className="card-title dashboard-title h4">
+                Welcome to your dashboard
+              </p>
             </div>
-            <h4 className="card-title dashboard-title">
-              Welcome to your dashboard
-            </h4>
+
             {auth?.admin && (
               <h5 className="card-subtitle">You are signed in as admin</h5>
             )}
             <div className="card-body">
               <h5 className="card-title">Here you can:</h5>
-
               <ul className="list-group list-group-flush">
                 {auth?.admin && (
                   <li className="list-group-item h5">
@@ -74,7 +74,7 @@ const Dashboard: React.FC = () => {
                   </li>
                 )}
                 <li className="list-group-item h5">
-                  <Link className="link-dark" to="/spookyspotlist">
+                  <Link to="spookyspotlist" className="link-dark">
                     Handle your saved spooky spots
                   </Link>
                 </li>
