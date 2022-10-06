@@ -67,7 +67,7 @@ const SpookyMap: React.FC = () => {
           <RFeature geometry={new Point(fromLonLat(userCoords.origin))}>
             <ROverlay className="no-interaction">
               <img
-                src={"/spookyspotslogo.png"}
+                src={"/images/spookyspotslogo.png"}
                 style={{
                   position: "relative",
                   top: -18,
@@ -102,7 +102,7 @@ const SpookyMap: React.FC = () => {
               >
                 <ROverlay className="no-interaction">
                   <img
-                    src={"/spookyspotslogo.png"}
+                    src={"/images/spookyspotslogo.png"}
                     style={{
                       position: "relative",
                       top: -18,

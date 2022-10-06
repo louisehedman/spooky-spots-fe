@@ -13,7 +13,7 @@ const Header: React.FC = () => {
           <Link className="navbar-brand" to="/">
             <img
               className="img-fluid"
-              src="/spookyspotslogo.png"
+              src="/images/spookyspotslogo.png"
               alt="spooky spots logo"
             />
           </Link>
