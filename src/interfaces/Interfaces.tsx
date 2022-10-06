@@ -5,7 +5,7 @@ export interface IUser {
   password?: string | undefined;
   email: string | undefined;
   isAdmin: boolean | undefined;
-  spookySpotList: Array<ISpookySpotListItem> | undefined;
+  spookySpotList: Array<ISpookySpotListItem>;
 }
 
 export interface IUserDetails {
@@ -61,5 +61,10 @@ export interface ISpookySpotListItem {
   comment: string | undefined;
   hasVisited: boolean | undefined;
   spookySpot?: ISpookySpot | undefined;
+}
+
+export interface IEditListItem {
+  comment?: string | undefined;
+  hasVisited?: boolean | undefined;
 }
 
