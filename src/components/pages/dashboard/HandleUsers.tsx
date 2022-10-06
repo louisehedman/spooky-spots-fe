@@ -52,53 +52,65 @@ const HandleUsers: React.FC = () => {
   };
 
   return (
-    <div className="container rounded py-5 my-5 text-white" style={{ backgroundColor: "#0e284a" }}>
+    <div
+      className="container rounded py-5 my-5 text-white"
+      style={{ backgroundColor: "#0e284a" }}
+    >
       <div className="row justify-content-center">
-                <div className="col-md-8">
-
-       <div className="card-header">
-                <h2>Handle users
-                    <Link to="/dashboard" className="btn btn-dark float-end mb-2">BACK</Link>
-                </h2>
-                </div>
-      <section className="" style={{ backgroundColor: "#FFFFFF" }}>
-        <div className="card-body text-center table-responsive">
-          <table className="table table-hover" style={{ color: "#0e284a" }}>
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user: IUser, index: any) => {
-                return (
-                  <tr key={index}>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    {user.isAdmin === false && <td>User</td>}
-                    {user.isAdmin === true && <td>Admin</td>}
-                    <td><Link className="btn btn-warning btn-sm" to={"edituser/" + user._id}>Edit</Link></td>
-                    <td>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => deleteUser(user._id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+        <div className="col-md-8">
+          <div className="card-header">
+            <h2>
+              Handle users
+              <Link to="/dashboard" className="btn btn-dark float-end mb-2">
+                BACK
+              </Link>
+            </h2>
+          </div>
+          <section className="" style={{ backgroundColor: "#FFFFFF" }}>
+            <div className="card-body text-center table-responsive">
+              <table className="table table-hover" style={{ color: "#0e284a" }}>
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                  {users.map((user: IUser, index: any) => {
+                    return (
+                      <tr key={index}>
+                        <td>{user.username}</td>
+                        <td>{user.email}</td>
+                        {user.isAdmin === false && <td>User</td>}
+                        {user.isAdmin === true && <td>Admin</td>}
+                        <td>
+                          <Link
+                            className="btn btn-warning btn-sm"
+                            to={"edituser/" + user._id}
+                          >
+                            Edit
+                          </Link>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => deleteUser(user._id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
-    </div>
+      </div>
     </div>
   );
 };

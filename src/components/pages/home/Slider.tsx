@@ -48,16 +48,18 @@ const SpookySpotSlider: React.FC = () => {
                   key={index}
                   interval={5000}
                 >
-                  <img
-                    className="img-fluid border"
-                    src={`${spookySpot.image}`}
-                    alt={"slide" + index}
-                    width="10px"
-                    style={{
-                      width: "250px",
-                      height: "250px",
-                    }}
-                  />
+                  <Link to={"/spookyspots/" + spookySpot.name}>
+                    <img
+                      className="img-fluid border"
+                      src={`${spookySpot.image}`}
+                      alt={"slide" + index}
+                      width="10px"
+                      style={{
+                        width: "250px",
+                        height: "250px",
+                      }}
+                    />
+                  </Link>
                   <Carousel.Caption>
                     <h3>{spookySpot.name}</h3>
                     <div className="d-flex justify-content-center">

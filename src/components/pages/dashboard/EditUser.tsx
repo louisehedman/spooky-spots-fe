@@ -40,13 +40,19 @@ const EditUser: React.FC = () => {
     fetchUser();
   }, [slug]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+    boolValue?: boolean
+  ) => {
     const value = e.target.value;
     setState({
       ...state,
-      [e.target.name]: value,
+      [e.target.name]: boolValue !== undefined ? boolValue : value,
     });
     console.log(value);
+    console.log(boolValue);
   };
 
   const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
@@ -116,7 +122,7 @@ const EditUser: React.FC = () => {
                   checked={false === state.isAdmin}
                   value="false"
                   onChange={(e) => {
-                    handleChange(e);
+                    handleChange(e, false);
                   }}
                 />
               </label>
@@ -129,7 +135,7 @@ const EditUser: React.FC = () => {
                   checked={true === state.isAdmin}
                   value="true"
                   onChange={(e) => {
-                    handleChange(e);
+                    handleChange(e, true);
                   }}
                 />
               </label>

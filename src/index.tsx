@@ -18,6 +18,8 @@ import GhostTypes from './components/pages/ghosttypes/GhostTypes';
 import Dashboard from './components/pages/dashboard/Dashboard';
 import HandleUsers from './components/pages/dashboard/HandleUsers';
 import EditUser from './components/pages/dashboard/EditUser';
+import SpookySpotList from './components/pages/dashboard/SpookySpotList';
+import EditListItem from './components/pages/dashboard/EditListItem';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -38,6 +40,8 @@ root.render(
         <Route path="/ghosttypes/:slug" element={<GhostType />} />
         <Route path="/dashboard/handleusers" element={<HandleUsers />} />
         <Route path="/dashboard/handleusers/edituser/:slug" element={<EditUser />} />
+        <Route path="/dashboard/spookyspotlist" element={<SpookySpotList/>} />
+        <Route path="/dashboard/spookyspotlist/editlistitem/:userId/:listItemId" element={<EditListItem />} />
       </Route>
     </Routes>
   </BrowserRouter>
