@@ -14,6 +14,7 @@ import { Point } from "ol/geom";
 import "ol/ol.css";
 import { ISpookySpot } from "../../../interfaces/Interfaces";
 import { API_URL } from "../../../helpers/Urls";
+import { Link } from "react-router-dom";
 
 const SpookyMap: React.FC = () => {
   const center = fromLonLat([14.662, 59.957]);
@@ -123,14 +124,14 @@ const SpookyMap: React.FC = () => {
                       <strong>{spookySpot.name}</strong>
                     </p>
                     <div className="card-body text-center">
-                      <img
+                    <Link to={"/spookyspots/" + spookySpot.name}><img
                         className="img-fluid"
                         style={{
                           width: "90%",
                         }}
                         src={`${spookySpot.image}`}
                         alt={`${spookySpot.name}`}
-                      />
+                      /></Link>
                     </div>
                   </div>
                 </RPopup>

@@ -70,10 +70,9 @@ const ListItem: React.FC<Props> = ({ listItem, userId }) => {
 
   return (
       <tr>
-        <td className="text-black">{spookySpot?.name}</td>
+        <td><Link className="link-dark" to={"/spookyspots/" + spookySpot?.name}>{spookySpot?.name}</Link></td>
         {listItem.hasVisited === false && <td>No</td>}
         {listItem.hasVisited === true && <td>Yes</td>}
-
         <td>{listItem.comment}</td>
         <td>
           <Link

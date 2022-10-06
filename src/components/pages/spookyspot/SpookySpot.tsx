@@ -57,7 +57,7 @@ const SpookySpot: React.FC = () => {
           <ul className="list-group w-50 mx-auto border-0">
             {spookySpot?.ghostTypes.map(({ type }) => (
               <li className="list-group-item text-white border-0" style={{backgroundColor: "#0e284a"}} key={type}>
-                {type}
+                <Link className="text-white" to={"/ghostTypes/" + type}>{type}</Link>
               </li>
             ))}
           </ul>
