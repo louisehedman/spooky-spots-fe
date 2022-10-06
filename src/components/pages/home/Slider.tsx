@@ -4,7 +4,6 @@ import { API_URL } from "../../../helpers/Urls";
 import { useEffect, useState } from "react";
 import { ISpookySpot } from "../../../interfaces/Interfaces";
 import { Link } from "react-router-dom";
-import AddToListButton from "../spookyspot/AddToListButton";
 
 const SpookySpotSlider: React.FC = () => {
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
@@ -49,22 +48,20 @@ const SpookySpotSlider: React.FC = () => {
                   key={index}
                   interval={5000}
                 >
-                  <Link to={"/spookyspots/" + spookySpot.name}><img
-                    className="img-fluid border"
-                    src={`${spookySpot.image}`}
-                    alt={"slide" + index}
-                    width="10px"
-                    style={{
-                      width: "250px",
-                      height: "250px",
-                    }}
-                  />
+                  <Link to={"/spookyspots/" + spookySpot.name}>
+                    <img
+                      className="img-fluid border"
+                      src={`${spookySpot.image}`}
+                      alt={"slide" + index}
+                      width="10px"
+                      style={{
+                        width: "250px",
+                        height: "250px",
+                      }}
+                    />
                   </Link>
                   <Carousel.Caption>
                     <h3>{spookySpot.name}</h3>
-                    <AddToListButton
-              spookySpotId={spookySpot?._id}
-            />
                     <div className="d-flex justify-content-center">
                       <Link to={"/spookyspots/" + spookySpot.name}>
                         <button className="p-1 mx-1 my-3 btn btn-light">

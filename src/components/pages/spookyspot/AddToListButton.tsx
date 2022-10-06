@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProvider";
 import AddToListForm from "./AddToListForm";
+import SpookySpot from "./SpookySpot";
 
 export interface Props {
   spookySpotId: string | undefined;
