@@ -68,3 +68,9 @@ export interface IEditListItem {
   hasVisited?: boolean | undefined;
 }
 
+export interface IEditSettings {
+  email?: string | undefined;
+  password?: string | undefined;
+  confirmPassword?: string | undefined;
+}
+

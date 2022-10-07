@@ -79,9 +79,9 @@ const Dashboard: React.FC = () => {
                   </Link>
                 </li>
                 <li className="list-group-item h5">
-                  <a className="link-dark" href="/usersettings">
+                  <Link className="link-dark" to="managesettings">
                     Manage your settings
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
