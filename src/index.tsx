@@ -20,6 +20,7 @@ import HandleUsers from './components/pages/dashboard/HandleUsers';
 import EditUser from './components/pages/dashboard/EditUser';
 import SpookySpotList from './components/pages/dashboard/SpookySpotList';
 import EditListItem from './components/pages/dashboard/EditListItem';
+import ManageSettings from './components/pages/dashboard/ManageSettings';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -42,6 +43,8 @@ root.render(
         <Route path="/dashboard/handleusers/edituser/:slug" element={<EditUser />} />
         <Route path="/dashboard/spookyspotlist" element={<SpookySpotList/>} />
         <Route path="/dashboard/spookyspotlist/editlistitem/:userId/:listItemId" element={<EditListItem />} />
+        <Route path="/dashboard/managesettings" element={<ManageSettings />} />
+
       </Route>
     </Routes>
   </BrowserRouter>
