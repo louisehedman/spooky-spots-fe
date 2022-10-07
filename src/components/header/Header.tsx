@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
+import SearchSpookySpot from "../searchspookyspot/SearchSpookySpot";
 import "./Header.css";
 
 const Header: React.FC = () => {
   const auth = useContext(AuthContext);
 
   return (
-    <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark relative-top m-0 bg-opacity-75">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
@@ -125,10 +125,10 @@ const Header: React.FC = () => {
                 </ul>
               </li>
             </ul>
+            <SearchSpookySpot />
           </div>
         </div>
       </nav>
-    </>
   );
 };
 
