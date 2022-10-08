@@ -41,6 +41,15 @@ const Header: React.FC = () => {
               </li>
               <li className="nav-item">
                 <Link
+                  className="nav-link active"
+                  to="/spookyspots"
+                  style={{ color: "white" }}
+                >
+                  Spooky-spots
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
                   className="nav-link"
                   to="/about"
                   style={{ color: "white" }}
