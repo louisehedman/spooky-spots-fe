@@ -40,21 +40,26 @@ const SearchSpookySpot: React.FC = () => {
             <ul className="list-unstyled">
               <input
                 className="form-control me-2"
+                aria-labelledby="searchfield"
+                id="searchfield"
                 type="search"
                 value={search}
                 placeholder="Search spooky-spot by name or country"
                 onChange={handleChange}
               />
-              {spookySpots.map((spookySpot: any) => {
-                if (
-                  (spookySpot.name.toLowerCase().startsWith(search) &&
-                    search) ||
-                  (spookySpot.country.toLowerCase().startsWith(search) &&
-                    search)
-                ) {
-                  return (
-                    <div className="searchedSpookySpot">
-                      <li key={spookySpot.id}>
+              <div className="searchedSpookySpot">
+                {spookySpots.map((spookySpot: any, index: any) => {
+                  if (
+                    (spookySpot.name.toLowerCase().startsWith(search) &&
+                      search) ||
+                    (spookySpot.country.toLowerCase().startsWith(search) &&
+                      search)
+                  ) {
+                    return (
+                      <li
+                        key={index}
+                        style={{ borderBottom: "2px solid #fff" }}
+                      >
                         <h3>{spookySpot.name}</h3>
                         <address>
                           <p>{spookySpot.address}</p>
@@ -74,10 +79,10 @@ const SearchSpookySpot: React.FC = () => {
                           </button>
                         </Link>
                       </li>
-                    </div>
-                  );
-                } else return null;
-              })}
+                    );
+                  } else return null;
+                })}
+              </div>
             </ul>
           </div>
         </div>

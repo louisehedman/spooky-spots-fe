@@ -247,10 +247,16 @@ const SpookySpots: React.FC = () => {
                       height: "250px",
                     }}
                   />
-                  <p className="w-75 m-auto">
+                  <p className="w-75 m-auto py-2 h4">
                     Rating: {spookySpot.rating}/5{" "}
                     <i className="fa-solid fa-ghost" />
                   </p>
+                  <h4 className="py-2">Address:</h4>
+                  <address>
+                    <p>{spookySpot?.address}</p>
+                    <p>{spookySpot?.postalCode}</p>
+                    <p>{spookySpot?.country}</p>
+                  </address>
                   <Link to={"/spookyspots/" + spookySpot.name}>
                     <button className="p-1 mx-1 my-3 btn btn-success">
                       Find out more about {spookySpot.name}

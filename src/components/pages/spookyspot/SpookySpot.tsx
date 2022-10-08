@@ -70,12 +70,13 @@ const SpookySpot: React.FC = () => {
               Coordinates: {spookySpot?.location.coordinates[0]},{" "}
               {spookySpot?.location.coordinates[1]}
             </p>
+            </address>
             <Link to={"/spookymap"}>
-              <button className="p-1 mx-1 my-3 btn btn-secondary">
+              <button className="p-1 mb-3 btn btn-secondary">
                 Go to map
               </button>
             </Link>
-          </address>
+          
           <h4 className="border-top py-2">Spooky rate</h4>
           <p>
             <i className="fa-solid fa-ghost" /> {spookySpot?.rating}/5
