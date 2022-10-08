@@ -45,7 +45,7 @@ const SpookySpots: React.FC = () => {
       }
     };
     fetchSpookySpots();
-  }, [spookySpots]);
+  }, []);
 
   return (
     <div
