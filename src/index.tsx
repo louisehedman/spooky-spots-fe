@@ -21,7 +21,7 @@ import EditUser from './components/pages/dashboard/EditUser';
 import SpookySpotList from './components/pages/dashboard/SpookySpotList';
 import EditListItem from './components/pages/dashboard/EditListItem';
 import ManageSettings from './components/pages/dashboard/ManageSettings';
-import SpookySpots from './components/spookyspots/SpookySpots';
+import SpookySpots from './components/pages/spookyspots/SpookySpots';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
