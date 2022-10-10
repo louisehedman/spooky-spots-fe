@@ -31,10 +31,7 @@ const SpookySpots: React.FC = () => {
         }
       );
     };
-    getUserLocation();
-  }, [userLon, userLat]);
 
-  useEffect(() => {
     const fetchSpookySpots = async () => {
       try {
         await axios.get(API_URL("spookySpots")).then((response: any) => {
@@ -44,8 +41,11 @@ const SpookySpots: React.FC = () => {
         console.log(error);
       }
     };
+
+
+    getUserLocation();
     fetchSpookySpots();
-  }, []);
+  }, [userLon, userLat, spookySpots]);
 
   return (
     <div
