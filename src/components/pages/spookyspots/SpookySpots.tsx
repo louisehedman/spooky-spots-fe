@@ -24,6 +24,7 @@ const SpookySpots: React.FC = () => {
 
   useEffect(() => {
     const getUserLocation = () => {
+      console.log("inside user location")
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
           setUserLat(position.coords.latitude);
@@ -33,6 +34,7 @@ const SpookySpots: React.FC = () => {
     };
 
     const fetchSpookySpots = async () => {
+      console.log("inside fetchSpookyspots")
       try {
         await axios.get(API_URL("spookySpots")).then((response: any) => {
           setSpookySpots(response.data.spookySpots);
@@ -41,11 +43,9 @@ const SpookySpots: React.FC = () => {
         console.log(error);
       }
     };
-
-
     getUserLocation();
     fetchSpookySpots();
-  }, [userLon, userLat, spookySpots]);
+  }, []);
 
   return (
     <div
