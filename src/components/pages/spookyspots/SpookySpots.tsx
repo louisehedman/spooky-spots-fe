@@ -19,8 +19,8 @@ const SpookySpots: React.FC = () => {
     distanceMax,
   ]);
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
-  const [userLat, setUserLat] = useState<any>();
-  const [userLon, setUserLon] = useState<any>();
+  const [userLat, setUserLat] = useState<any>(null);
+  const [userLon, setUserLon] = useState<any>(null);
 
   useEffect(() => {
     const getUserLocation = () => {
@@ -45,7 +45,7 @@ const SpookySpots: React.FC = () => {
     };
     getUserLocation();
     fetchSpookySpots();
-  }, []);
+  }, [userLat, userLon]);
 
   return (
     <div
@@ -208,6 +208,8 @@ const SpookySpots: React.FC = () => {
       <ul className="list-unstyled">
         {spookySpots.map((spookySpot: any) => {
           if (
+            userLon != null &&
+            userLat != null &&
             spookySpot.rating >= ratingValues[0] &&
             spookySpot.rating <= ratingValues[1] &&
             geolib.getDistance(
