@@ -101,6 +101,15 @@ const Header: React.FC = () => {
                       <li>
                         <Link
                           className="dropdown-item"
+                          to={auth?.signedIn ? `/community` : "/"}
+                          style={{ color: "white" }}
+                        >
+                          Community
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
                           to="/"
                           style={{ color: "white" }}
                           onClick={auth.handleLogout}
