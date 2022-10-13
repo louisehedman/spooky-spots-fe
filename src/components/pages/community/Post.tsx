@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../../helpers/Urls";
 import { IComment, IPost } from "../../../interfaces/Interfaces";
+import { AuthContext } from "../../auth/AuthProvider";
 
 interface Props {
   post: IPost;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const Post: React.FC<Props> = ({ post }) => {
+  const auth = useContext(AuthContext);
   const [comments, setComments] = useState<IComment[]>([]);
   const postId = post._id;
 
@@ -30,6 +32,38 @@ const Post: React.FC<Props> = ({ post }) => {
     fetchComments();
   }, [postId]);
 
+  const deletePost = async (id: string | undefined) => {
+    return axios
+      .delete(API_URL(`posts/${id}`), {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const deleteComment = async (id: string | undefined) => {
+    return axios
+      .delete(API_URL(`comments/${id}`), {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <li>
       <div className="card col-lg-6 col-md-8 m-auto text-black mb-2 ">
@@ -43,6 +77,22 @@ const Post: React.FC<Props> = ({ post }) => {
           By: {post.username} at {new Date(post.createdAt).toLocaleString()}
         </p>
         <p className="card-body">{post.text}</p>
+        <div>
+          {(post.username === localStorage.getItem("username") ||
+            auth?.admin) && (
+            <button
+              className="btn btn-danger btn-sm float-end"
+              onClick={() => {
+                if (
+                  window.confirm("Are you sure you wish to delete this post?")
+                )
+                  deletePost(post._id);
+              }}
+            >
+              Delete
+            </button>
+          )}
+        </div>
       </div>
       <h4 className="h6">Comments:</h4>
       <ul className="list-unstyled mb-4">
@@ -60,6 +110,24 @@ const Post: React.FC<Props> = ({ post }) => {
                 {new Date(comment.createdAt).toLocaleString()}
               </p>
               <p className="card-body">{comment.content}</p>
+              <div>
+                {(comment.username === localStorage.getItem("username") ||
+                  auth?.admin) && (
+                  <button
+                    className="btn btn-danger btn-sm float-end"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete this comment?"
+                        )
+                      )
+                        deleteComment(comment._id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </li>
           );
         })}
