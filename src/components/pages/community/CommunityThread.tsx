@@ -142,16 +142,21 @@ const CommunityThread: React.FC = () => {
                   name="title"
                   placeholder="Post title"
                   value={newPost.title}
+                  pattern="^[a-z|å|ä|ö|A-Z|Å|Ä|Ö|0-9_.!?, ]*$"
+                  maxLength={100}
+                  required
                   onChange={(e) => {
                     handleChange(e);
                   }}
                 />
-                <label className="d-block h4">Post content:</label>
+                <label className="d-block h4 mt-2">Post content:</label>
                 <textarea
                   className="col-lg-6 col-md-8 col-12"
                   name="text"
                   placeholder="Write something..."
                   value={newPost.text}
+                  maxLength={2000}
+                  required
                   onChange={(e) => {
                     handleChange(e);
                   }}

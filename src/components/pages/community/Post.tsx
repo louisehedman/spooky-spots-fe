@@ -12,6 +12,7 @@ interface Props {
 const Post: React.FC<Props> = ({ post }) => {
   const auth = useContext(AuthContext);
   const [comments, setComments] = useState<IComment[]>([]);
+  const [showComments, setShowComments] = useState<boolean>(false);
   const [newComment, setNewComment] = useState({
     content: "",
   });
@@ -130,72 +131,93 @@ const Post: React.FC<Props> = ({ post }) => {
           )}
         </div>
       </div>
-      <h4 className="h6">Comments:</h4>
-      <ul className="list-unstyled mb-4">
-        {comments.map((comment: IComment, index: any) => {
-          return (
-            <li
-              className="card col-lg-4 col-md-6 m-auto text-black"
-              key={index}
-            >
-              <p
-                className="card-header text-white"
-                style={{ backgroundColor: "#0e284a" }}
-              >
-                By: {comment.username} at{" "}
-                {new Date(comment.createdAt).toLocaleString()}
-              </p>
-              <p className="card-body">{comment.content}</p>
-              <div>
-                {(comment.username === localStorage.getItem("username") ||
-                  auth?.admin) && (
-                  <button
-                    className="btn btn-danger btn-sm float-end"
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          "Are you sure you wish to delete this comment?"
-                        )
-                      )
-                        deleteComment(comment._id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                )}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="card text-white" style={{ backgroundColor: "#0e284a" }}>
-        <form
-          className="text-center"
-          onSubmit={(e) =>
-            handleSubmit(e, API_URL(`posts/${post?._id}/comments`))
+      <div className="text-white my-2">
+        <button
+          className={
+            showComments === false
+              ? "btn btn-success btn-sm"
+              : "btn btn-warning btn-sm"
           }
+          style={{ color: "white" }}
+          onClick={() => setShowComments((comments) => !comments)}
+          id={post._id}
         >
-          <div className="form-group my-4">
+          {showComments === false
+            ? `Write and show comments (${comments.length})`
+            : `Hide comments`}
+        </button>
+      </div>
+      {showComments && (
+        <ul className="list-unstyled mb-4">
+          {comments.map((comment: IComment, index: any) => {
+            return (
+              <li
+                className="card col-lg-4 col-md-6 m-auto text-black"
+                key={index}
+              >
+                <p
+                  className="card-header text-white"
+                  style={{ backgroundColor: "#0e284a" }}
+                >
+                  By: {comment.username} at{" "}
+                  {new Date(comment.createdAt).toLocaleString()}
+                </p>
+                <p className="card-body">{comment.content}</p>
+                <div>
+                  {(comment.username === localStorage.getItem("username") ||
+                    auth?.admin) && (
+                    <button
+                      className="btn btn-danger btn-sm float-end"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you wish to delete this comment?"
+                          )
+                        )
+                          deleteComment(comment._id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {showComments && (
+        <div className="card text-white" style={{ backgroundColor: "#0e284a" }}>
+          <form
+            className="text-center"
+            onSubmit={(e) =>
+              handleSubmit(e, API_URL(`posts/${post?._id}/comments`))
+            }
+          >
             <div className="form-group my-4">
-              <label className="d-block h6">New comment:</label>
-              <textarea
-                className="col-lg-4 col-md-6 col-12"
-                name="content"
-                placeholder="Write something..."
-                value={newComment.content}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
+              <div className="form-group my-4">
+                <label className="d-block h6">New comment:</label>
+                <textarea
+                  className="col-lg-4 col-md-6 col-12"
+                  name="content"
+                  placeholder="Write something..."
+                  value={newComment.content}
+                  maxLength={1000}
+                  required
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </div>
+              <input
+                className="btn btn-success btn-sm btn-block"
+                type="submit"
+                value="Create comment"
               />
             </div>
-            <input
-              className="btn btn-success btn-sm btn-block"
-              type="submit"
-              value="Create comment"
-            />
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      )}
     </li>
   );
 };
