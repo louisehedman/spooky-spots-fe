@@ -23,6 +23,8 @@ import EditListItem from './components/pages/dashboard/EditListItem';
 import ManageSettings from './components/pages/dashboard/ManageSettings';
 import SpookySpots from './components/pages/spookyspots/SpookySpots';
 import Community from './components/pages/community/Community';
+import CommunitySubject from './components/pages/community/CommunitySubject';
+import CommunityThread from './components/pages/community/CommunityThread';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -48,6 +50,8 @@ root.render(
         <Route path="/dashboard/spookyspotlist/editlistitem/:userId/:listItemId" element={<EditListItem />} />
         <Route path="/dashboard/managesettings" element={<ManageSettings />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/community/subjects/:slug" element={<CommunitySubject />} />
+        <Route path="/community/subjects/:slug/threads/:threadId" element={<CommunityThread />} />
       </Route>
     </Routes>
   </BrowserRouter>
