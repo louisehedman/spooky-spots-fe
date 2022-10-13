@@ -16,7 +16,7 @@ const CommunityThread: React.FC = () => {
   });
   const { threadId } = useParams();
   const formatedThreadDate = useMemo(
-    () => new Date(thread?.createdAt as any).toLocaleDateString(),
+    () => new Date(thread?.createdAt as any).toLocaleString(),
     [thread?.createdAt]
   );
 
@@ -158,7 +158,7 @@ const CommunityThread: React.FC = () => {
                 />
               </div>
               <input
-                className="btn btn-success btn-block"
+                className="btn btn-success btn-sm btn-block"
                 type="submit"
                 value="Create post"
               />

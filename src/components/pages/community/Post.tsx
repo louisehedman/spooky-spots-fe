@@ -12,6 +12,9 @@ interface Props {
 const Post: React.FC<Props> = ({ post }) => {
   const auth = useContext(AuthContext);
   const [comments, setComments] = useState<IComment[]>([]);
+  const [newComment, setNewComment] = useState({
+    content: "",
+  });
   const postId = post._id;
 
   useEffect(() => {
@@ -31,6 +34,36 @@ const Post: React.FC<Props> = ({ post }) => {
     };
     fetchComments();
   }, [postId]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setNewComment({
+      ...newComment,
+      [e.target.name]: value,
+    });
+    console.log(value);
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
+    e.preventDefault();
+    try {
+      let commentDetails = newComment;
+      let res = await axios.post(url, commentDetails, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      console.log("res: ", res);
+      if (res.status === 200) {
+        console.log(res);
+        window.location.reload();
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const deletePost = async (id: string | undefined) => {
     return axios
@@ -73,7 +106,10 @@ const Post: React.FC<Props> = ({ post }) => {
         >
           {post.title}
         </h3>
-        <p className="my-0 text-white" style={{ backgroundColor: "#0e284a" }}>
+        <p
+          className="my-0 pb-2 text-white"
+          style={{ backgroundColor: "#0e284a" }}
+        >
           By: {post.username} at {new Date(post.createdAt).toLocaleString()}
         </p>
         <p className="card-body">{post.text}</p>
@@ -132,6 +168,34 @@ const Post: React.FC<Props> = ({ post }) => {
           );
         })}
       </ul>
+      <div className="card text-white" style={{ backgroundColor: "#0e284a" }}>
+        <form
+          className="text-center"
+          onSubmit={(e) =>
+            handleSubmit(e, API_URL(`posts/${post?._id}/comments`))
+          }
+        >
+          <div className="form-group my-4">
+            <div className="form-group my-4">
+              <label className="d-block h6">New comment:</label>
+              <textarea
+                className="col-lg-4 col-md-6 col-12"
+                name="content"
+                placeholder="Write something..."
+                value={newComment.content}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+            </div>
+            <input
+              className="btn btn-success btn-sm btn-block"
+              type="submit"
+              value="Create comment"
+            />
+          </div>
+        </form>
+      </div>
     </li>
   );
 };
