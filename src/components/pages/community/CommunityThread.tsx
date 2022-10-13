@@ -10,6 +10,10 @@ const CommunityThread: React.FC = () => {
   const auth = useContext(AuthContext);
   const [thread, setThread] = useState<ICommunityThread>();
   const [posts, setPosts] = useState([]);
+  const [newPost, setNewPost] = useState({
+    title: "",
+    text: "",
+  });
   const { threadId } = useParams();
   const formatedThreadDate = useMemo(
     () => new Date(thread?.createdAt as any).toLocaleDateString(),
@@ -63,6 +67,40 @@ const CommunityThread: React.FC = () => {
     fetchPosts();
   }, [threadId]);
 
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const value = e.target.value;
+    setNewPost({
+      ...newPost,
+      [e.target.name]: value,
+    });
+    console.log(value);
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
+    e.preventDefault();
+    try {
+      let postDetails = newPost;
+      let res = await axios.post(url, postDetails, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      console.log("res: ", res);
+      if (res.status === 200) {
+        console.log(res);
+        window.location.reload();
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div
       className="container rounded mb-4 text-white"
@@ -87,6 +125,46 @@ const CommunityThread: React.FC = () => {
             <Post key={index} post={post} threadId={thread?._id} />
           ))}
         </ul>
+        <div className="card text-white" style={{ backgroundColor: "#0e284a" }}>
+          <h3>Write a post</h3>
+          <form
+            className="text-center"
+            onSubmit={(e) =>
+              handleSubmit(e, API_URL(`communitythreads/${thread?._id}/posts`))
+            }
+          >
+            <div className="form-group my-4">
+              <div className="form-group my-4">
+                <label className="d-block h4">Title:</label>
+                <input
+                  className="col-lg-6 col-md-8 col-12"
+                  type="text"
+                  name="title"
+                  placeholder="Post title"
+                  value={newPost.title}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+                <label className="d-block h4">Post content:</label>
+                <textarea
+                  className="col-lg-6 col-md-8 col-12"
+                  name="text"
+                  placeholder="Write something..."
+                  value={newPost.text}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </div>
+              <input
+                className="btn btn-success btn-block"
+                type="submit"
+                value="Create post"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
