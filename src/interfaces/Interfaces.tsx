@@ -74,3 +74,37 @@ export interface IEditSettings {
   confirmPassword?: string | undefined;
 }
 
+export interface ICommunitySubject {
+  _id: string;
+  title: string | undefined;
+  description: string | undefined;
+  threads?: Array<ICommunityThread>;
+}
+
+export interface ICommunityThread {
+  _id: string;
+  subjectID: string;
+  title: string | undefined;
+  createdAt: Date;
+  user: string | undefined;
+  username: string | undefined;
+}
+
+export interface IPost {
+  _id: string;
+  threadID: string;
+  title: string;
+  text: string;
+  username: string;
+  createdAt: Date;
+  user: string;
+}
+
+export interface IComment {
+  _id: string;
+  postID: string;
+  username: string;
+  user: string;
+  content: string;
+  createdAt: Date;
+}
