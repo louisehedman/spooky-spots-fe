@@ -37,10 +37,10 @@ const Community: React.FC = () => {
       className="container rounded mb-4 text-white text-center my-4"
       style={{ backgroundColor: "#0e284a" }}
     >
-      <h2 className="text-center my-4">
+      <h2 className="text-center my-4 py-4">
         SpookySpots Community <i className="fa-solid fa-ghost" />
       </h2>
-      <div className="card" style={{ backgroundColor: "#0e284a" }}>
+      <div className="card border-0" style={{ backgroundColor: "#0e284a" }}>
         <h3 className="text-center mb-4">Topics</h3>
         <ul className="list-unstyled">
           {communitySubjects.map((communitySubject: any, index: any) => {

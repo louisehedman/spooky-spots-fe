@@ -72,7 +72,7 @@ const SpookySpot: React.FC = () => {
             </p>
             </address>
             <Link to={"/spookymap"}>
-              <button className="p-1 mb-3 btn btn-secondary">
+              <button className="p-1 mb-3 btn btn-success">
                 Go to map
               </button>
             </Link>

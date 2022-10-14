@@ -69,7 +69,7 @@ const EditUser: React.FC = () => {
           withCredentials: true,
         }
       );
-      setMessage(`${user?.username}'s role updated`);
+      setMessage(`${user?.username} updated`);
       console.log("res: ", res);
     } catch (err: any) {
       if (err.response.status === 401) {
