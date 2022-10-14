@@ -37,7 +37,7 @@ const GhostTypes: React.FC = () => {
               <div className="card-header">
                 <Link
                   to={"/ghosttypes/" + ghostType.type}
-                  className="text-white"
+                  className="text-white h5"
                 >
                   {ghostType.type}
                 </Link>

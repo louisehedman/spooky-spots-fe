@@ -119,10 +119,11 @@ const ManageSettings: React.FC = () => {
             onSubmit={(e) => handleSubmit(e, API_URL("user/change-email"))}
           >
             <div className="form-group text-white">
-              <label className="col-form-label">
+              <label htmlFor="email" className="col-form-label">
                 Email:{" "}
                 <input
                   className="form-control m-auto my-3"
+                  id="email"
                   type="email"
                   placeholder={user?.email}
                   name="email"
@@ -145,10 +146,11 @@ const ManageSettings: React.FC = () => {
             onSubmit={(e) => handleSubmit(e, API_URL("user/change-password"))}
           >
             <div className="form-group text-white d-block">
-              <label className="col-form-label">
+              <label htmlFor="password" className="col-form-label">
                 New password:{" "}
                 <input
                   className="form-control m-auto my-3"
+                  id="password"
                   type="password"
                   name="password"
                   minLength={8}

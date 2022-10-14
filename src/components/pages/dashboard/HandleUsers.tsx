@@ -201,9 +201,10 @@ const HandleUsers: React.FC = () => {
                 onSubmit={(e) => handleSubmit(e, API_URL("register"))}
               >
                 <div className="form-group">
-                  <label>Choose username: </label>
+                  <label htmlFor="username">Choose username: </label>
                   <input
                     className="form-control m-auto my-3"
+                    id="username"
                     type="text"
                     name="username"
                     value={newUser.username}
@@ -211,9 +212,10 @@ const HandleUsers: React.FC = () => {
                     placeholder="Username"
                     required
                   />
-                  <label>Email: </label>
+                  <label htmlFor="email">Email: </label>
                   <input
                     className="form-control m-auto my-3"
+                    id="email"
                     type="email"
                     name="email"
                     value={newUser.email}
@@ -221,9 +223,10 @@ const HandleUsers: React.FC = () => {
                     placeholder="Email"
                     required
                   />
-                  <label>Password: </label>
+                  <label htmlFor="password">Password: </label>
                   <input
                     className="form-control m-auto my-3"
+                    id="password"
                     type="password"
                     name="password"
                     value={newUser.password}
@@ -237,6 +240,7 @@ const HandleUsers: React.FC = () => {
                       No
                       <input
                         className="form-check-input text-secondary ms-2 me-4 my-4"
+                        id="isUser"
                         type="radio"
                         name="isAdmin"
                         checked={false === newUser.isAdmin}
@@ -250,6 +254,7 @@ const HandleUsers: React.FC = () => {
                       Yes
                       <input
                         className="form-check-input ms-2 me-4 my-4"
+                        id="isAdmin"
                         type="radio"
                         name="isAdmin"
                         checked={true === newUser.isAdmin}

@@ -63,7 +63,7 @@ const Header: React.FC = () => {
                   to="/spookymap"
                   style={{ color: "white" }}
                 >
-                  SpookyMap
+                  Spooky-Map
                 </Link>
               </li>
               <li className="nav-item dropdown">

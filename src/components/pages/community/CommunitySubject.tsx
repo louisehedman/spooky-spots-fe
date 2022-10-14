@@ -116,9 +116,10 @@ const CommunitySubject: React.FC = () => {
           >
             <div className="form-group my-4">
               <div className="form-group my-4">
-                <label className="d-block h3">Create new thread:</label>
+                <label htmlFor="title" className="d-block h3">Create new thread:</label>
                 <input
                   className="col-lg-4 col-md-6 col-12"
+                  id="title"
                   type="text"
                   name="title"
                   placeholder="Name new thread"

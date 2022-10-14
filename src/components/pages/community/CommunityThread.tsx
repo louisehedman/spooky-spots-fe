@@ -135,9 +135,10 @@ const CommunityThread: React.FC = () => {
           >
             <div className="form-group my-4">
               <div className="form-group my-4">
-                <label className="d-block h4">Title:</label>
+                <label htmlFor="title" className="d-block h4">Title:</label>
                 <input
                   className="col-lg-6 col-md-8 col-12"
+                  id="title"
                   type="text"
                   name="title"
                   placeholder="Post title"
@@ -149,9 +150,10 @@ const CommunityThread: React.FC = () => {
                     handleChange(e);
                   }}
                 />
-                <label className="d-block h4 mt-2">Post content:</label>
+                <label htmlFor="text" className="d-block h4 mt-2">Post content:</label>
                 <textarea
                   className="col-lg-6 col-md-8 col-12"
+                  id="text"
                   name="text"
                   placeholder="Write something..."
                   value={newPost.text}

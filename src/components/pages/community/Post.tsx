@@ -136,7 +136,7 @@ const Post: React.FC<Props> = ({ post }) => {
           className={
             showComments === false
               ? "btn btn-success btn-sm"
-              : "btn btn-warning btn-sm"
+              : "btn btn-warning text-black btn-sm"
           }
           style={{ color: "white" }}
           onClick={() => setShowComments((comments) => !comments)}
@@ -196,9 +196,10 @@ const Post: React.FC<Props> = ({ post }) => {
           >
             <div className="form-group my-4">
               <div className="form-group my-4">
-                <label className="d-block h6">New comment:</label>
+                <label htmlFor="content" className="d-block h6">New comment:</label>
                 <textarea
                   className="col-lg-4 col-md-6 col-12"
+                  id="content"
                   name="content"
                   placeholder="Write something..."
                   value={newComment.content}

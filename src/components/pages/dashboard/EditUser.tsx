@@ -117,6 +117,7 @@ const EditUser: React.FC = () => {
                 No
                 <input
                   className="form-check-input text-secondary ms-2 me-4 my-4"
+                  id="isUser"
                   type="radio"
                   name="isAdmin"
                   checked={false === state.isAdmin}
@@ -130,6 +131,7 @@ const EditUser: React.FC = () => {
                 Yes
                 <input
                   className="form-check-input ms-2 me-4 my-4"
+                  id="isAdmin"
                   type="radio"
                   name="isAdmin"
                   checked={true === state.isAdmin}
