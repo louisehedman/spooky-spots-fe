@@ -14,6 +14,13 @@ export interface IUserDetails {
   password?: string;
 }
 
+export interface ICreateUser {
+  username?: string;
+  email?: string;
+  password?: string;
+  isAdmin: boolean;
+}
+
 export interface IEditUser {
   isAdmin?: boolean | undefined;
   email?: string | undefined;
