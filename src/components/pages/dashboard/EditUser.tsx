@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { IEditUser, IUser } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 const EditUser: React.FC = () => {
   const auth = useContext(AuthContext);
@@ -69,7 +69,7 @@ const EditUser: React.FC = () => {
           withCredentials: true,
         }
       );
-      setMessage(`${user?.username}'s role updated`);
+      setMessage(`${user?.username} updated`);
       console.log("res: ", res);
     } catch (err: any) {
       if (err.response.status === 401) {
@@ -117,6 +117,7 @@ const EditUser: React.FC = () => {
                 No
                 <input
                   className="form-check-input text-secondary ms-2 me-4 my-4"
+                  id="isUser"
                   type="radio"
                   name="isAdmin"
                   checked={false === state.isAdmin}
@@ -130,6 +131,7 @@ const EditUser: React.FC = () => {
                 Yes
                 <input
                   className="form-check-input ms-2 me-4 my-4"
+                  id="isAdmin"
                   type="radio"
                   name="isAdmin"
                   checked={true === state.isAdmin}

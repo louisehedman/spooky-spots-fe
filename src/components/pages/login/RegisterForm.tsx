@@ -106,10 +106,11 @@ const RegisterForm: React.FC = () => {
                   onSubmit={(e) => handleSubmit(e, API_URL("register"))}
                 >
                   <div className="form-group">
-                    <label>Choose username: </label>
+                    <label htmlFor="username">Choose username: </label>
                     <input
                       ref={usernameRef}
                       className="form-control m-auto my-3"
+                      id="username"
                       type="text"
                       name="username"
                       value={credentials.username}
@@ -117,10 +118,11 @@ const RegisterForm: React.FC = () => {
                       placeholder="Username"
                       required
                     />
-                    <label>Email: </label>
+                    <label htmlFor="email">Email: </label>
                     <input
                       ref={emailRef}
                       className="form-control m-auto my-3"
+                      id="email"
                       type="email"
                       name="email"
                       value={credentials.email}
@@ -128,10 +130,11 @@ const RegisterForm: React.FC = () => {
                       placeholder="Email"
                       required
                     />
-                    <label>Password: </label>
+                    <label htmlFor="password">Password: </label>
                     <input
                       ref={passwordRef}
                       className="form-control m-auto my-3"
+                      id="password"
                       type="password"
                       name="password"
                       value={credentials.password}

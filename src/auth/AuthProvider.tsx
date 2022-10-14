@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { API_URL } from "../../helpers/Urls";
-import { IAuthContext } from "../../interfaces/Interfaces";
+import { API_URL } from "../helpers/Urls";
+import { IAuthContext } from "../interfaces/Interfaces";
 
 // Create the context
 export const AuthContext = createContext<IAuthContext | null>(null);
@@ -9,8 +9,6 @@ export const AuthContext = createContext<IAuthContext | null>(null);
 const AuthProvider = ({ children }: any) => {
   // Define all variables and functions to be passed down to children
   const [signedIn, setSignedIn] = useState(false);
-  //const [isAdmin, setIsAdmin] = useState("")
-
   const admin = localStorage.getItem("isAdmin") === "true";
   const defaultUser = localStorage.getItem("isAdmin") === "false";
   
@@ -19,10 +17,6 @@ const AuthProvider = ({ children }: any) => {
     if (user === "true") {
       setSignedIn(true);
     }
-    /*const userRole = localStorage.getItem("isAdmin");
-    if (userRole !== "") {
-      setIsAdmin(isAdmin);
-    }*/
   }, []);
 
   const auth = () => {

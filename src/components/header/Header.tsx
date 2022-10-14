@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../auth/AuthProvider";
+import { AuthContext } from "../../auth/AuthProvider";
 import SearchSpookySpot from "../searchspookyspot/SearchSpookySpot";
 import "./Header.css";
 
@@ -63,7 +63,7 @@ const Header: React.FC = () => {
                   to="/spookymap"
                   style={{ color: "white" }}
                 >
-                  SpookyMap
+                  Spooky-Map
                 </Link>
               </li>
               <li className="nav-item dropdown">
@@ -96,6 +96,15 @@ const Header: React.FC = () => {
                           style={{ color: "white" }}
                         >
                           My dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to={auth?.signedIn ? `/community` : "/"}
+                          style={{ color: "white" }}
+                        >
+                          Community
                         </Link>
                       </li>
                       <li>

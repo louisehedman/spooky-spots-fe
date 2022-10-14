@@ -1,13 +1,21 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
-import { IUser } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { ICreateUser, IUser } from "../../../interfaces/Interfaces";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 const HandleUsers: React.FC = () => {
   const auth = useContext(AuthContext);
   const [users, setUsers] = useState<IUser[]>([]);
+  const messageRef = useRef<HTMLParagraphElement | null>(null);
+  const [message, setMessage] = useState("");
+  const [newUser, setNewUser] = useState<ICreateUser>({
+    username: "",
+    email: "",
+    password: "",
+    isAdmin: false,
+  });
 
   const navigate = useNavigate();
 
@@ -32,6 +40,61 @@ const HandleUsers: React.FC = () => {
     };
     fetchUsers();
   }, []);
+
+  // Handles changes in inputs and updates credentials on each keypress
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    boolValue?: boolean
+  ) => {
+    const value = e.target.value;
+    setNewUser({
+      ...newUser,
+      /* Event targets use the same name as credentials object properties.
+       * Sets the value of the current input to responding credentials property
+       */
+      [e.target.name]: boolValue !== undefined ? boolValue : value,
+    });
+    console.log(value);
+    console.log(boolValue);
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
+    // Prevents reloading of page on submit
+    e.preventDefault();
+    // Set message instead of default validation error from server
+    if (newUser.password?.length) {
+      if (newUser.password.length < 8) {
+        setNewUser({ ...newUser, password: "" });
+        return setMessage("Password must be at least 8 characters");
+      }
+    }
+
+    try {
+      const res = await axios.post(
+        url,
+        { ...newUser },
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+      setMessage(`User created successfully`);
+      window.location.reload();
+    } catch (err: any) {
+      // Errors from mongoose uniqueValidator plugin
+      if (err.response.data.includes("User validation failed: email")) {
+        setMessage("Account already registered with this email");
+      } else if (
+        err.response.data.includes("User validation failed: username")
+      ) {
+        setMessage("Account already registered with this username");
+      } else {
+        setMessage(err.response.data);
+      }
+    }
+  };
 
   const deleteUser = async (id: string | undefined) => {
     if (auth?.admin) {
@@ -97,7 +160,14 @@ const HandleUsers: React.FC = () => {
                         <td>
                           <button
                             className="btn btn-danger btn-sm"
-                            onClick={() => deleteUser(user._id)}
+                            onClick={() => {
+                              if (
+                                window.confirm(
+                                  "Are you sure you wish to delete this user?"
+                                )
+                              )
+                                deleteUser(user._id);
+                            }}
                           >
                             Delete
                           </button>
@@ -109,6 +179,101 @@ const HandleUsers: React.FC = () => {
               </table>
             </div>
           </section>
+          <div className="card" style={{ color: "#0e284a" }}>
+            <h3
+              className="card-header text-center text-white"
+              style={{ backgroundColor: "#0e284a" }}
+            >
+              Create new user
+            </h3>
+            <p
+              ref={messageRef}
+              className="text-reset text-center text-danger"
+              style={
+                !message ? { visibility: "hidden" } : { visibility: "visible" }
+              }
+            >
+              {message}
+            </p>
+            <div className="card-body">
+              <form
+                className="w-75 m-auto"
+                onSubmit={(e) => handleSubmit(e, API_URL("register"))}
+              >
+                <div className="form-group">
+                  <label htmlFor="username">Choose username: </label>
+                  <input
+                    className="form-control m-auto my-3"
+                    id="username"
+                    type="text"
+                    name="username"
+                    value={newUser.username}
+                    onChange={handleChange}
+                    placeholder="Username"
+                    required
+                  />
+                  <label htmlFor="email">Email: </label>
+                  <input
+                    className="form-control m-auto my-3"
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={newUser.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                    required
+                  />
+                  <label htmlFor="password">Password: </label>
+                  <input
+                    className="form-control m-auto my-3"
+                    id="password"
+                    type="password"
+                    name="password"
+                    value={newUser.password}
+                    onChange={handleChange}
+                    placeholder="Password"
+                    required
+                  />
+                  <div className="form-group">
+                    <p className="d-block">Admin?</p>
+                    <label htmlFor="isUser">
+                      No
+                      <input
+                        className="form-check-input text-secondary ms-2 me-4 my-4"
+                        id="isUser"
+                        type="radio"
+                        name="isAdmin"
+                        checked={false === newUser.isAdmin}
+                        value="false"
+                        onChange={(e) => {
+                          handleChange(e, false);
+                        }}
+                      />
+                    </label>
+                    <label htmlFor="isAdmin">
+                      Yes
+                      <input
+                        className="form-check-input ms-2 me-4 my-4"
+                        id="isAdmin"
+                        type="radio"
+                        name="isAdmin"
+                        checked={true === newUser.isAdmin}
+                        value="true"
+                        onChange={(e) => {
+                          handleChange(e, true);
+                        }}
+                      />
+                    </label>
+                  </div>
+                  <input
+                    className="btn btn-success"
+                    type="submit"
+                    value="Create new user"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

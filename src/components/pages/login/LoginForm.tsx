@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 import { API_URL } from "../../../helpers/Urls";
 import { useNavigate } from "react-router-dom";
@@ -114,10 +114,11 @@ const LoginForm: React.FC = () => {
                   onSubmit={(e) => handleSubmit(e, API_URL("login"))}
                 >
                   <div className="form-group">
-                    <label>Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
                       ref={emailRef}
                       className="form-control m-auto my-3"
+                      id="email"
                       type="email"
                       name="email"
                       value={credentials.email}
@@ -125,10 +126,11 @@ const LoginForm: React.FC = () => {
                       placeholder="Email"
                       required
                     />
-                    <label>Password:</label>
+                    <label htmlFor="password">Password:</label>
                     <input
                       ref={passwordRef}
                       className="form-control m-auto my-3"
+                      id="password"
                       type="password"
                       name="password"
                       value={credentials.password}

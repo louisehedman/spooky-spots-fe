@@ -6,7 +6,7 @@ import {
   IEditListItem,
   ISpookySpotListItem,
 } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 export interface Props {
   userId: string | undefined;
@@ -128,7 +128,8 @@ const EditListItem: React.FC = () => {
               }
             >
               <div className="form-group  my-4">
-                <label className="d-block">Have you visited?</label>
+              <fieldset>
+                <legend className="d-block h5">Have you visited?</legend>
                 <label htmlFor="hasNotVisited">No:</label>
                 <input
                   className="ms-2 me-4"
@@ -153,10 +154,11 @@ const EditListItem: React.FC = () => {
                     handleChange(e, true);
                   }}
                 />
-
+                </fieldset>
                 <div className="form-group my-4">
-                  <label className="d-block">Comment:</label>
+                  <label htmlFor="comment" className="d-block h5">Comment:</label>
                   <textarea
+                    id="comment"
                     name="comment"
                     placeholder={listItem?.comment}
                     value={state.comment}
@@ -166,7 +168,7 @@ const EditListItem: React.FC = () => {
                   />
                 </div>
                 <input
-                  className="btn btn-outline-success btn-block"
+                  className="btn btn-success btn-block"
                   type="submit"
                   value="Edit"
                 />

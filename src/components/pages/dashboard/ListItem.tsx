@@ -69,28 +69,35 @@ const ListItem: React.FC<Props> = ({ listItem, userId }) => {
   };
 
   return (
-      <tr>
-        <td><Link className="link-dark" to={"/spookyspots/" + spookySpot?.name}>{spookySpot?.name}</Link></td>
-        {listItem.hasVisited === false && <td>No</td>}
-        {listItem.hasVisited === true && <td>Yes</td>}
-        <td>{listItem.comment}</td>
-        <td>
-          <Link
-            className="btn btn-warning btn-sm"
-            to={"editlistitem/" + userId + "/" + listItemId}
-          >
-            Edit
-          </Link>
-        </td>
-        <td>
-          <button
-            className="btn btn-danger btn-sm"
-            onClick={() => deleteListItem(userId, listItem._id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
+    <tr>
+      <td>
+        <Link className="link-dark" to={"/spookyspots/" + spookySpot?.name}>
+          {spookySpot?.name}
+        </Link>
+      </td>
+      {listItem.hasVisited === false && <td>No</td>}
+      {listItem.hasVisited === true && <td>Yes</td>}
+      <td>{listItem.comment}</td>
+      <td>
+        <Link
+          className="btn btn-warning btn-sm"
+          to={"editlistitem/" + userId + "/" + listItemId}
+        >
+          Edit
+        </Link>
+      </td>
+      <td>
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => {
+            if (window.confirm("Are you sure you wish to delete this item?"))
+              deleteListItem(userId, listItem._id);
+          }}
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
   );
 };
 

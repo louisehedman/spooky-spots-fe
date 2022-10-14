@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 import AddToListForm from "./AddToListForm";
-import SpookySpot from "./SpookySpot";
 
 export interface Props {
   spookySpotId: string | undefined;
@@ -42,12 +41,12 @@ const AddToListButton: React.FC<Props> = ({ spookySpotId }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5
-                className="modal-title text-black text-center m-auto"
+              <h2
+                className="modal-title h5 text-black text-center m-auto"
                 id="exampleModalLabel"
               >
                 Add spooky spot to my list!
-              </h5>
+              </h2>
               <button
                 type="button"
                 className="btn-close"

@@ -1,7 +1,6 @@
 export interface IUser {
   _id: string;
   username: string | undefined;
-  avatar?: string | undefined;
   password?: string | undefined;
   email: string | undefined;
   isAdmin: boolean | undefined;
@@ -12,6 +11,13 @@ export interface IUserDetails {
   username?: string;
   email?: string;
   password?: string;
+}
+
+export interface ICreateUser {
+  username?: string;
+  email?: string;
+  password?: string;
+  isAdmin: boolean;
 }
 
 export interface IEditUser {
@@ -74,3 +80,37 @@ export interface IEditSettings {
   confirmPassword?: string | undefined;
 }
 
+export interface ICommunitySubject {
+  _id: string;
+  title: string | undefined;
+  description: string | undefined;
+  threads?: Array<ICommunityThread>;
+}
+
+export interface ICommunityThread {
+  _id: string;
+  subjectID: string;
+  title: string | undefined;
+  createdAt: Date;
+  user: string | undefined;
+  username: string | undefined;
+}
+
+export interface IPost {
+  _id: string;
+  threadID: string;
+  title: string;
+  text: string;
+  username: string;
+  createdAt: Date;
+  user: string;
+}
+
+export interface IComment {
+  _id: string;
+  postID: string;
+  username: string;
+  user: string;
+  content: string;
+  createdAt: Date;
+}
