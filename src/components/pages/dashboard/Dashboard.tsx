@@ -26,7 +26,6 @@ const Dashboard: React.FC = () => {
         setUser({
           _id: res.data.user._id,
           username: res.data.user.username,
-          avatar: res.data.user.avatar,
           password: res.data.user.password,
           email: res.data.user.password,
           isAdmin: res.data.user.isAdmin,

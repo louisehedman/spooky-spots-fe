@@ -1,7 +1,6 @@
 export interface IUser {
   _id: string;
   username: string | undefined;
-  avatar?: string | undefined;
   password?: string | undefined;
   email: string | undefined;
   isAdmin: boolean | undefined;
