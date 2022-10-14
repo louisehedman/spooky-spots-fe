@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { ICommunityThread, IPost } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 import Post from "./Post";
 
 const CommunityThread: React.FC = () => {

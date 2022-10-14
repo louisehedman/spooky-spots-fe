@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { IEditUser, IUser } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 const EditUser: React.FC = () => {
   const auth = useContext(AuthContext);

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../auth/AuthProvider';
+import { AuthContext } from '../../../auth/AuthProvider';
 import GhostTypes from '../ghosttypes/GhostTypes';
 import SpookySpotSlider from './Slider';
 

@@ -6,7 +6,7 @@ import {
   IEditListItem,
   ISpookySpotListItem,
 } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 export interface Props {
   userId: string | undefined;

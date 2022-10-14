@@ -6,7 +6,7 @@ import {
   ICommunitySubject,
   ICommunityThread,
 } from "../../../interfaces/Interfaces";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 const CommunitySubject: React.FC = () => {
   const auth = useContext(AuthContext);
