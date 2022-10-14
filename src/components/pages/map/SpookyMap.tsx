@@ -7,6 +7,7 @@ import {
   RFeature,
   ROverlay,
   RPopup,
+  RControl,
 } from "rlayers";
 import { fromLonLat } from "ol/proj";
 import { Coordinate } from "ol/coordinate";
@@ -21,7 +22,6 @@ const SpookyMap: React.FC = () => {
   const [userLat, setUserLat] = useState<any>();
   const [userLon, setUserLon] = useState<any>();
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
-
   const [userCoords, setUserCoords] = useState<Record<string, Coordinate>>({
     origin: [userLat, userLon],
   });
@@ -32,14 +32,14 @@ const SpookyMap: React.FC = () => {
         (position: GeolocationPosition) => {
           setUserLat(position.coords.latitude);
           setUserLon(position.coords.longitude);
-          setUserCoords({ origin: [userLon, userLat] })
+          setUserCoords({ origin: [userLon, userLat] });
         }
       );
     };
     getUserLocation();
   }, [userLat, userLon]);
 
-  console.log(userCoords)
+  console.log(userCoords);
 
   useEffect(() => {
     const fetchSpookySpots = async () => {
@@ -55,19 +55,42 @@ const SpookyMap: React.FC = () => {
   }, []);
 
   return (
-    <div className="container rounded mb-5 text-white" style={{backgroundColor: "#0e284a"}}>
-      <h2 className="text-center my-4 py-4">Spooky map</h2>
+    <div
+      className="container rounded pb-5 mb-5 text-white"
+      style={{ backgroundColor: "#0e284a" }}
+    >
+      <h2 className="text-center my-4 pt-4">Spooky map</h2>
+      <p>
+        <img
+          src={"/images/spookyspotsuserlogo.png"}
+          width={36}
+          height={36}
+          alt="location marker"
+        />{" "}
+        = Your position
+      </p>
+      <p>
+        <img
+          src={"/images/spookyspotslogo.png"}
+          width={36}
+          height={36}
+          alt="location marker"
+        />{" "}
+        = SpookySpot position
+      </p>
+      <p>Click on a SpookySpot to get info</p>
       <RMap
         width={"100%"}
         height={"70vh"}
         initial={{ center: center, zoom: 5 }}
       >
         <ROSM />
+        <RControl.RScaleLine />
         <RLayerVector zIndex={10}>
           <RFeature geometry={new Point(fromLonLat(userCoords.origin))}>
             <ROverlay className="no-interaction">
               <img
-                src={"/images/spookyspotslogo.png"}
+                src={"/images/spookyspotsuserlogo.png"}
                 style={{
                   position: "relative",
                   top: -18,
@@ -81,9 +104,12 @@ const SpookyMap: React.FC = () => {
               />
             </ROverlay>
 
-            <RPopup trigger={"click" || "hover"} className="example-overlay">
+            <RPopup trigger={"click"} className="example-overlay">
               <div className="card text-center">
-                <p className="card-header" style={{backgroundColor: "#0e284a"}}>
+                <p
+                  className="card-header"
+                  style={{ backgroundColor: "#0e284a" }}
+                >
                   <strong>Your position</strong>
                 </p>
               </div>
@@ -116,22 +142,28 @@ const SpookyMap: React.FC = () => {
                   />
                 </ROverlay>
                 <RPopup
-                  trigger={"click" || "hover"}
+                  trigger={"click"}
                   className="example-overlay"
                 >
                   <div className="card w-25">
-                    <p className="card-header" style={{backgroundColor: "#0e284a"}}>
+                    <p
+                      className="card-header"
+                      style={{ backgroundColor: "#0e284a"}}
+                    >
                       <strong>{spookySpot.name}</strong>
                     </p>
                     <div className="card-body text-center">
-                    <Link to={"/spookyspots/" + spookySpot.name}><img
-                        className="img-fluid"
-                        style={{
-                          width: "90%",
-                        }}
-                        src={`${spookySpot.image}`}
-                        alt={`${spookySpot.name}`}
-                      /></Link>
+                      <p className="text-black">Rating {spookySpot.rating}/5 <i className="fa-solid fa-ghost" /> </p>
+                      <Link to={"/spookyspots/" + spookySpot.name}>
+                        <img
+                          className="img-fluid"
+                          style={{
+                            width: "90%",
+                          }}
+                          src={`${spookySpot.image}`}
+                          alt={`${spookySpot.name}`}
+                        />
+                      </Link>
                     </div>
                   </div>
                 </RPopup>
@@ -140,8 +172,6 @@ const SpookyMap: React.FC = () => {
           })}
         </RLayerVector>
       </RMap>
-      <p>{userLat}</p>
-      <p>{userLon}</p>
     </div>
   );
 };
