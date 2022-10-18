@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { AuthContext } from "../../../auth/AuthProvider";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 import { API_URL } from "../../../helpers/Urls";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   // Use the variables and functions from the AuthContext
@@ -145,6 +145,7 @@ const LoginForm: React.FC = () => {
                     />
                   </div>
                 </form>
+                <p className="text-center pt-3">No account yet? Go to <Link to="/register">Register</Link></p>
               </div>
             </div>
           </div>

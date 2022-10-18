@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 
@@ -149,6 +149,7 @@ const RegisterForm: React.FC = () => {
                     />
                   </div>
                 </form>
+                <p className="text-center pt-3">Already have an account? Go to <Link to="/login">Sign in</Link></p>
               </div>
             </div>
           </div>
