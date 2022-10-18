@@ -145,7 +145,9 @@ const LoginForm: React.FC = () => {
                     />
                   </div>
                 </form>
-                <p className="text-center pt-3">No account yet? Go to <Link to="/register">Register</Link></p>
+                <p className="text-center pt-3">
+                  No account yet? Go to <Link to="/register">Register</Link>
+                </p>
               </div>
             </div>
           </div>

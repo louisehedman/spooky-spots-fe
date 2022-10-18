@@ -67,7 +67,7 @@ const RegisterForm: React.FC = () => {
       );
       console.log(res);
       setMessage(`Registration successful`);
-      navigate("/login")
+      navigate("/login");
     } catch (err: any) {
       // Errors from mongoose uniqueValidator plugin
       if (err.response.data.includes("User validation failed: email")) {
@@ -87,7 +87,12 @@ const RegisterForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
-              <h2 className="card-header text-center text-white" style={{backgroundColor: "#0e284a"}}>Register</h2>
+              <h2
+                className="card-header text-center text-white"
+                style={{ backgroundColor: "#0e284a" }}
+              >
+                Register
+              </h2>
 
               <p
                 ref={messageRef}
@@ -149,7 +154,10 @@ const RegisterForm: React.FC = () => {
                     />
                   </div>
                 </form>
-                <p className="text-center pt-3">Already have an account? Go to <Link to="/login">Sign in</Link></p>
+                <p className="text-center pt-3">
+                  Already have an account? Go to{" "}
+                  <Link to="/login">Sign in</Link>
+                </p>
               </div>
             </div>
           </div>
