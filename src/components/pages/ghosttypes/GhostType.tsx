@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../../helpers/Urls";
 import { IGhostType } from "../../../interfaces/Interfaces";
@@ -7,6 +7,9 @@ import { IGhostType } from "../../../interfaces/Interfaces";
 const GhostType: React.FC = () => {
   const [ghostType, setGhostType] = useState<IGhostType>();
   let { slug } = useParams();
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const getGhostType = async () => {
@@ -27,6 +30,12 @@ const GhostType: React.FC = () => {
         className="container px-4 pt-4 rounded w-100 mb-4 pb-4 py-4 my-4 text-white"
         style={{ backgroundColor: "#0e284a" }}
       >
+        <button
+          onClick={() => navigate(-1)}
+          className="btn btn-dark float-end my-2"
+        >
+          BACK
+        </button>
         <div
           className="card text-center mb-4 py-4 border-0"
           style={{ backgroundColor: "#0e284a" }}

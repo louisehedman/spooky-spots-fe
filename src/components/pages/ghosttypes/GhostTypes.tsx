@@ -26,6 +26,7 @@ const GhostTypes: React.FC = () => {
       style={{ backgroundColor: "#0e284a" }}
     >
       <h2 className="text-center my-4">Ghost Types</h2>
+      <p className="h5 mb-4 fw-light">A ghost is not just a ghost, click on a ghost type below to learn its characteristics!</p>
       <div className="d-flex row justify-content-between">
         {ghostTypes.map((ghostType: IGhostType, index: any) => {
           return (
@@ -34,10 +35,10 @@ const GhostTypes: React.FC = () => {
               style={{ backgroundColor: "#0e284a" }}
               key={index}
             >
-              <div className="card-header">
+              <div className="card-header rounded-circle border-white bg-light my-2">
                 <Link
                   to={"/ghosttypes/" + ghostType.type}
-                  className="text-white h5"
+                  className="text-black h5"
                 >
                   {ghostType.type}
                 </Link>
