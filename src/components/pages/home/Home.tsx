@@ -12,9 +12,13 @@ const Home: React.FC = () => {
       className="container rounded mb-4"
       style={{ backgroundColor: "#0e284a" }}
     >
-      <h1 className="text-center text-white my-4 py-4">
-        Welcome to Spooky Spots
+      <h1 className="text-center text-white mt-4 pt-4">
+        Welcome to SpookySpots
       </h1>
+      <p className="text-center text-white h4 fw-light fst-italic">
+        "The place where you find haunted places and talk about ghosts with
+        others"
+      </p>
       <SpookySpotSlider />
       {!auth?.auth() && (
         <div className="row">

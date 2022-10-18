@@ -31,13 +31,13 @@ const SpookySpotSlider: React.FC = () => {
   return (
     <div className="container py-4 px-4 pt-4 text-white">
       <div className="card border-0" style={{ backgroundColor: "#0e284a" }}>
-        <h2 className="text-center py-2">Latest added SpookySpots</h2>
+        <h2 className="text-center py-2">Most recently added SpookySpots</h2>
         <Carousel
-          className="rounded w-100 mb-4"
+          className="rounded w-100"
           style={{ backgroundColor: "#0e284a" }}
         >
           {spookySpotsClone
-            .slice(0, 2)
+            .slice(0, 3)
             .map((spookySpot: ISpookySpot, index: any) => {
               return (
                 <Carousel.Item
@@ -63,12 +63,17 @@ const SpookySpotSlider: React.FC = () => {
                   <Carousel.Caption>
                     <h3>{spookySpot.name}</h3>
                     <div className="d-flex justify-content-center">
-                      <Link to={"/spookyspots/" + spookySpot.name}>
-                        <button className="p-1 mx-1 my-3 btn btn-light">
-                          Read more
-                        </button>
+                      <Link
+                        className="p-1 mx-1 my-3 btn btn-light"
+                        to={"/spookyspots/" + spookySpot.name}
+                      >
+                        Read more
                       </Link>
                     </div>
+                    <p className="text-white">
+                      Created at:{" "}
+                      {new Date(spookySpot.createdAt).toLocaleDateString()}
+                    </p>
                   </Carousel.Caption>
                 </Carousel.Item>
               );
