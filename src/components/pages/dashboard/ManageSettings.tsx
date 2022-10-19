@@ -96,13 +96,13 @@ const ManageSettings: React.FC = () => {
         className="card border-0 col-lg-6 col-md-8 m-auto"
         style={{ backgroundColor: "#0e284a" }}
       >
-        <div className="card-header">
-          <h2>
-            Edit email and password
-            <Link to="/dashboard" className="btn btn-dark float-end mb-2">
-              BACK
-            </Link>
-          </h2>
+        <div>
+          <Link to="/dashboard" className="btn btn-dark float-end my-2">
+            BACK
+          </Link>
+        </div>
+        <div className="card-header border-0">
+          <h2 className="w-75 m-auto">Edit email and password</h2>
         </div>
         <div className="card-body">
           <p
@@ -118,7 +118,7 @@ const ManageSettings: React.FC = () => {
             onSubmit={(e) => handleSubmit(e, API_URL("user/change-email"))}
           >
             <div className="form-group text-white">
-              <label htmlFor="email" className="col-form-label">
+              <label htmlFor="email" className="col-lg-8 col-form-label">
                 Email:{" "}
                 <input
                   className="form-control m-auto my-3"
@@ -145,7 +145,7 @@ const ManageSettings: React.FC = () => {
             onSubmit={(e) => handleSubmit(e, API_URL("user/change-password"))}
           >
             <div className="form-group text-white d-block">
-              <label htmlFor="password" className="col-form-label">
+              <label htmlFor="password" className="col-lg-8 col-form-label">
                 New password:{" "}
                 <input
                   className="form-control m-auto my-3"
@@ -157,7 +157,7 @@ const ManageSettings: React.FC = () => {
                   onChange={handleChange}
                 />
               </label>
-              <label className="col-form-label">
+              <label className="col-lg-8 col-form-label">
                 Confirm password:{" "}
                 <input
                   className="form-control m-auto my-3"

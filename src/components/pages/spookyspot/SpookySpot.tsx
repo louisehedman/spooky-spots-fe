@@ -39,16 +39,18 @@ const SpookySpot: React.FC = () => {
         className="container px-4 pt-4 rounded w-100 mb-4 pb-4 py-4 my-4 text-white"
         style={{ backgroundColor: "#0e284a" }}
       >
-        <button
-          onClick={() => navigate(-1)}
-          className="btn btn-dark float-end my-2"
-        >
-          BACK
-        </button>
         <div
-          className="card text-center mb-4 py-4 border-0"
+          className="card text-center mb-2 py-4 border-0 m-auto"
           style={{ backgroundColor: "#0e284a" }}
         >
+          <div>
+            <button
+              onClick={() => navigate(-1)}
+              className="btn btn-dark float-end"
+            >
+              BACK
+            </button>
+          </div>
           <h2 className="text-center py-4">{spookySpot?.name}</h2>
           <AddToListButton spookySpotId={spookySpot?._id} />
           <img
