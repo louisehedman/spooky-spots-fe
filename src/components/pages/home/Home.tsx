@@ -33,7 +33,7 @@ const Home: React.FC = () => {
         </div>
       )}
       <div className="card text-center m-auto w-50">
-        <p className="m-auto py-2">
+        <p className="py-2 px-2">
           Would you like to suggest a place that should be here? Send us an
           email:{" "}
           <a href="mailto:spookyspots2022@gmail.com">
