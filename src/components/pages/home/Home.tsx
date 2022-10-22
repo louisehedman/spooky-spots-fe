@@ -32,6 +32,16 @@ const Home: React.FC = () => {
           </div>
         </div>
       )}
+      <div className="card text-center m-auto w-50">
+        <p className="m-auto py-2">
+          Would you like to suggest a place that should be here? Send us an
+          email:{" "}
+          <a href="mailto:spookyspots2022@gmail.com">
+            spookyspots2022@gmail.com
+          </a>
+          . Our ghost hunters will check it out!
+        </p>
+      </div>
       <GhostTypes />
     </div>
   );
