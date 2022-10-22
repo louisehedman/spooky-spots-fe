@@ -25,6 +25,8 @@ import SpookySpots from './components/pages/spookyspots/SpookySpots';
 import Community from './components/pages/community/Community';
 import CommunitySubject from './components/pages/community/CommunitySubject';
 import CommunityThread from './components/pages/community/CommunityThread';
+import ForgotPassword from './components/pages/login/ForgotPassword';
+import ResetPassword from './components/pages/login/ResetPassword';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -38,6 +40,8 @@ root.render(
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/passwordreset/:slug" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/spookyspots" element={<SpookySpots />} />
         <Route path="/spookymap" element={<SpookyMap />} />

@@ -64,7 +64,10 @@ const LoginForm: React.FC = () => {
       setCredentials({ ...credentials, password: "" });
       // Sets the context username and role to the username and role from response and sets context signedIn variable to true
       auth?.handleLogin(res.data.username, res.data.isAdmin);
-      navigate("/dashboard");
+      setMessage(`Welcome ${res.data.username}`);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (err: any) {
       // If password is invalid
       if (err.response.status === 401) {
@@ -145,6 +148,10 @@ const LoginForm: React.FC = () => {
                     />
                   </div>
                 </form>
+                <p className="text-center pt-3">
+                  Forgot your password?{" "}
+                  <Link to="/forgotpassword">Click here</Link>
+                </p>
                 <p className="text-center pt-3">
                   No account yet? Go to <Link to="/register">Register</Link>
                 </p>

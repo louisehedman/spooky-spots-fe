@@ -19,6 +19,11 @@ const RegisterForm: React.FC = () => {
     password: "",
   });
 
+  // Disable submit if password and confirmation do not match
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  let passwordConfirm;
+
   const navigate = useNavigate();
 
   // Sets focus on the username field when component mounts
@@ -31,6 +36,11 @@ const RegisterForm: React.FC = () => {
   // Handles changes in inputs and updates credentials on each keypress
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    if (e.target.name === "passwordConfirm") {
+      e.target.value === credentials.password && e.target.value !== ""
+        ? setIsDisabled(false)
+        : setIsDisabled(true);
+    }
     setCredentials({
       ...credentials,
       /* Event targets use the same name as credentials object properties.
@@ -67,7 +77,9 @@ const RegisterForm: React.FC = () => {
       );
       console.log(res);
       setMessage(`Registration successful`);
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (err: any) {
       // Errors from mongoose uniqueValidator plugin
       if (err.response.data.includes("User validation failed: email")) {
@@ -147,9 +159,21 @@ const RegisterForm: React.FC = () => {
                       placeholder="Password"
                       required
                     />
+                    <label htmlFor="passwordConfirm">Confirm password: </label>
+                    <input
+                      className="form-control m-auto my-3"
+                      id="passwordConfirm"
+                      type="password"
+                      name="passwordConfirm"
+                      value={passwordConfirm}
+                      onChange={handleChange}
+                      placeholder="Confirm password"
+                      required
+                    />
                     <input
                       className="btn btn-success"
                       type="submit"
+                      disabled={isDisabled}
                       value="Register"
                     />
                   </div>
