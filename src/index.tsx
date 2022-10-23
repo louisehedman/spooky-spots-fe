@@ -28,6 +28,7 @@ import CommunitySubject from './components/pages/community/CommunitySubject';
 import CommunityThread from './components/pages/community/CommunityThread';
 import ForgotPassword from './components/pages/login/ForgotPassword';
 import ResetPassword from './components/pages/login/ResetPassword';
+import PageNotFound from './components/pagenotfound/PageNotFound';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -57,6 +58,8 @@ root.render(
         <Route path="/community" element={<Community />} />
         <Route path="/community/subjects/:slug" element={<CommunitySubject />} />
         <Route path="/community/subjects/:slug/threads/:threadId" element={<CommunityThread />} />
+        <Route path="*" element={<PageNotFound />} />
+
       </Route>
     </Routes>
   </BrowserRouter>
