@@ -13,7 +13,7 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
-//import {NetworkFirst} from 'workbox-strategies';
+import {NetworkFirst} from 'workbox-strategies';
 
 export type {};
 declare const self: ServiceWorkerGlobalScope;
@@ -81,10 +81,10 @@ self.addEventListener('message', (event) => {
   }
 });
 
-/*registerRoute(
+registerRoute(
   ({url}) => url.pathname.startsWith('/home'),
   new NetworkFirst()
-);*/
+);
 
 self.addEventListener("install", function (event) {
   event.waitUntil(
