@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
               </h5>
               <address>
                 <p>
-                  <i className="fas fa-home mr-3"></i> Spooky Spots, 123 45, SE
+                  <i className="fas fa-home mr-3"></i> SpookySpots, 123 45, SE
                 </p>
                 <p>
                   <i className="fas fa-envelope mr-3"></i>{" "}
