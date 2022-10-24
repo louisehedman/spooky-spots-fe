@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 
 const ResetPassword: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const messageRef = useRef<HTMLParagraphElement | null>(null);
   // Message variable
@@ -60,6 +61,7 @@ const ResetPassword: React.FC = () => {
     }
 
     try {
+      setLoading(true);
       const res = await axios.put(
         url,
         { ...credentials },
@@ -70,12 +72,14 @@ const ResetPassword: React.FC = () => {
         }
       );
       console.log(res);
+      setLoading(false);
       setMessage(`Password reset successful`);
       setTimeout(() => {
         navigate("/login");
       }, 2000);
     } catch (err: any) {
-      setMessage(err.response.data);
+      setLoading(false);
+      setMessage(`Invalid reset token or server error`);
     }
   };
 
@@ -100,6 +104,7 @@ const ResetPassword: React.FC = () => {
             >
               {message}
             </p>
+            {loading && <p className="text-center">Loading...</p>}
             <div className="card-body">
               <form
                 className="w-75 m-auto"

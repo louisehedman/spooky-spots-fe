@@ -6,6 +6,7 @@ import { API_URL } from "../../../helpers/Urls";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   // References to input elements
@@ -51,6 +52,7 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await axios.post(
         url,
         { ...credentials },
@@ -60,6 +62,7 @@ const LoginForm: React.FC = () => {
           withCredentials: true,
         }
       );
+      setLoading(false);
       // Clears the password field on submit
       setCredentials({ ...credentials, password: "" });
       // Sets the context username and role to the username and role from response and sets context signedIn variable to true
@@ -69,6 +72,7 @@ const LoginForm: React.FC = () => {
         navigate("/dashboard");
       }, 2000);
     } catch (err: any) {
+      setLoading(false);
       // If password is invalid
       if (err.response.status === 401) {
         if (passwordRef.current) {
@@ -84,7 +88,7 @@ const LoginForm: React.FC = () => {
         emailRef.current.focus();
       }
       // Set message to error response message
-      setMessage(err.response.data);
+      setMessage(err.response.data || `Server error`);
     }
   };
 
@@ -111,6 +115,7 @@ const LoginForm: React.FC = () => {
               >
                 {message}
               </p>
+              {loading && <p className="text-center">Loading...</p>}
               <div className="card-body">
                 <form
                   className="w-75 m-auto"

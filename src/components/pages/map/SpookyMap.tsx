@@ -18,13 +18,14 @@ import { API_URL } from "../../../helpers/Urls";
 import { Link } from "react-router-dom";
 
 const SpookyMap: React.FC = () => {
-  const center = fromLonLat([14.662, 59.957]);
+  const [loading, setLoading] = useState(false);
   const [userLat, setUserLat] = useState<any>();
   const [userLon, setUserLon] = useState<any>();
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
   const [userCoords, setUserCoords] = useState<Record<string, Coordinate>>({
     origin: [userLat, userLon],
   });
+  const center = fromLonLat([14.662, 59.957]);
 
   useEffect(() => {
     const getUserLocation = () => {
@@ -44,11 +45,14 @@ const SpookyMap: React.FC = () => {
   useEffect(() => {
     const fetchSpookySpots = async () => {
       try {
+        setLoading(true);
         await axios.get(API_URL("spookyspots")).then((response: any) => {
           setSpookySpots(response.data.spookySpots);
+          setLoading(false);
         });
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
     fetchSpookySpots();
@@ -79,6 +83,7 @@ const SpookyMap: React.FC = () => {
         = SpookySpot position
       </p>
       <p>Click on a SpookySpot to get info</p>
+      {loading && <p className="text-center my-2 py-2 h5">Loading...</p>}
       <RMap
         width={"100%"}
         height={"70vh"}
@@ -141,19 +146,19 @@ const SpookyMap: React.FC = () => {
                     alt="location marker"
                   />
                 </ROverlay>
-                <RPopup
-                  trigger={"click"}
-                  className="example-overlay"
-                >
+                <RPopup trigger={"click"} className="example-overlay">
                   <div className="card w-25">
                     <p
                       className="card-header"
-                      style={{ backgroundColor: "#0e284a"}}
+                      style={{ backgroundColor: "#0e284a" }}
                     >
                       <strong>{spookySpot.name}</strong>
                     </p>
                     <div className="card-body text-center">
-                      <p className="text-black">Rating {spookySpot.rating}/5 <i className="fa-solid fa-ghost" /> </p>
+                      <p className="text-black">
+                        Rating {spookySpot.rating}/5{" "}
+                        <i className="fa-solid fa-ghost" />{" "}
+                      </p>
                       <Link to={"/spookyspots/" + spookySpot.name}>
                         <img
                           className="img-fluid"
