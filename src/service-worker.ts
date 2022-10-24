@@ -73,38 +73,3 @@ self.addEventListener("message", (event) => {
 
 // Network first, falling back on cache strategy
 registerRoute(({ url }) => url.pathname.startsWith("/"), new NetworkFirst());
-
-// Stale-while-revalidate strategy
-/*registerRoute(
-  ({url}) => url.pathname.startsWith('/'),
-  new StaleWhileRevalidate()
-);*/
-
-/*self.addEventListener("fetch", (event) => {
-  if (event.request.destination === "image") {
-    event.respondWith(
-      caches.open(cacheName).then((cache) => {
-        return cache.match(event.request).then((cachedResponse) => {
-          const fetchedResponse = fetch(event.request).then(
-            (networkResponse) => {
-              cache.put(event.request, networkResponse.clone());
-
-              return networkResponse;
-            }
-          );
-
-          return cachedResponse || fetchedResponse;
-        });
-      })
-    );
-  } else {
-    return;
-  }
-});*/
-
-// Stale-While-Revalidate for all fetch events
-/*self.addEventListener("fetch", (event) => {
-  const { request } = event;
-
-  event.respondWith(new NetworkFirst().handle({ event, request }));
-});*/

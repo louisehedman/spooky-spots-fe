@@ -60,6 +60,7 @@ const Post: React.FC<Props> = ({ post }) => {
         window.location.reload();
       } else {
         console.log("Some error occured");
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);

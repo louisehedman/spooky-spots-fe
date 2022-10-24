@@ -95,6 +95,7 @@ const CommunityThread: React.FC = () => {
         window.location.reload();
       } else {
         console.log("Some error occured");
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);
