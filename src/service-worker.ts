@@ -72,7 +72,7 @@ self.addEventListener("message", (event) => {
 });
 
 // Network first, falling back on cache strategy
-//registerRoute(({ url }) => url.pathname.startsWith("/"), new NetworkFirst());
+registerRoute(({ url }) => url.pathname.startsWith("/"), new NetworkFirst());
 
 // Stale-while-revalidate strategy
 /*registerRoute(
@@ -103,8 +103,8 @@ self.addEventListener("message", (event) => {
 });*/
 
 // Stale-While-Revalidate for all fetch events
-self.addEventListener("fetch", (event) => {
+/*self.addEventListener("fetch", (event) => {
   const { request } = event;
 
   event.respondWith(new NetworkFirst().handle({ event, request }));
-});
+});*/
