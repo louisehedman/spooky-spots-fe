@@ -75,12 +75,12 @@ self.addEventListener("message", (event) => {
 //registerRoute(({ url }) => url.pathname.startsWith("/"), new NetworkFirst());
 
 // Stale-while-revalidate strategy
-registerRoute(
+/*registerRoute(
   ({url}) => url.pathname.startsWith('/'),
   new StaleWhileRevalidate()
-);
+);*/
 
-self.addEventListener("fetch", (event) => {
+/*self.addEventListener("fetch", (event) => {
   if (event.request.destination === "image") {
     event.respondWith(
       caches.open(cacheName).then((cache) => {
@@ -100,4 +100,11 @@ self.addEventListener("fetch", (event) => {
   } else {
     return;
   }
+});*/
+
+// Stale-While-Revalidate for all fetch events
+self.addEventListener("fetch", (event) => {
+  const { request } = event;
+
+  event.respondWith(new StaleWhileRevalidate().handle({ event, request }));
 });
