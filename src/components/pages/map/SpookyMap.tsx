@@ -44,7 +44,7 @@ const SpookyMap: React.FC = () => {
   useEffect(() => {
     const fetchSpookySpots = async () => {
       try {
-        await axios.get(API_URL("spookySpots")).then((response: any) => {
+        await axios.get(API_URL("spookyspots")).then((response: any) => {
           setSpookySpots(response.data.spookySpots);
         });
       } catch (error) {
