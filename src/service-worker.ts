@@ -6,7 +6,7 @@ import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
-//import { NetworkFirst } from "workbox-strategies";
+import { NetworkFirst } from "workbox-strategies";
 
 // Avoid TypeScript linter error
 export type {};
@@ -106,5 +106,5 @@ self.addEventListener("message", (event) => {
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
-  event.respondWith(new StaleWhileRevalidate().handle({ event, request }));
+  event.respondWith(new NetworkFirst().handle({ event, request }));
 });
