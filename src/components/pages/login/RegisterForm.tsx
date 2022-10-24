@@ -5,10 +5,10 @@ import { API_URL } from "../../../helpers/Urls";
 import { IUserDetails } from "../../../interfaces/Interfaces";
 
 const RegisterForm: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const messageRef = useRef<HTMLParagraphElement | null>(null);
   // Message variable
   const [message, setMessage] = useState("");
@@ -66,6 +66,7 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
+      setLoading(true);
       const res = await axios.post(
         url,
         { ...credentials },
@@ -76,11 +77,13 @@ const RegisterForm: React.FC = () => {
         }
       );
       console.log(res);
+      setLoading(false);
       setMessage(`Registration successful`);
       setTimeout(() => {
         navigate("/login");
       }, 2000);
     } catch (err: any) {
+      setLoading(false);
       // Errors from mongoose uniqueValidator plugin
       if (err.response.data.includes("User validation failed: email")) {
         setMessage("Account already registered with this email");
@@ -89,7 +92,7 @@ const RegisterForm: React.FC = () => {
       ) {
         setMessage("Account already registered with this username");
       } else {
-        setMessage(err.response.data);
+        setMessage(err.response.data || `Server error`);
       }
     }
   };
@@ -117,6 +120,7 @@ const RegisterForm: React.FC = () => {
               >
                 {message}
               </p>
+              {loading && <p className="text-center">Loading...</p>}
               <div className="card-body">
                 <form
                   className="w-75 m-auto"

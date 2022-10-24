@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { API_URL } from "../../../helpers/Urls";
 
 const ForgotPassword: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const emailRef = useRef<HTMLInputElement | null>(null);
-
   const messageRef = useRef<HTMLParagraphElement | null>(null);
   // Message variable
   const [message, setMessage] = useState("");
@@ -37,6 +37,7 @@ const ForgotPassword: React.FC = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await axios.post(
         url,
         { ...credentials },
@@ -47,14 +48,13 @@ const ForgotPassword: React.FC = () => {
         }
       );
       console.log(res);
-
+      setLoading(false);
       setMessage(`Email sent, check your mailbox`);
     } catch (err: any) {
-      if (err.response.data.includes("Email could not be sent")) {
-        setMessage(
-          "Email could not be sent, make sure it is your registered email, or try again later"
-        );
-      }
+      setLoading(false);
+      setMessage(
+        "Email couldn't be sent, make sure it's your registered email, or try again later"
+      );
     }
   };
 
@@ -79,6 +79,7 @@ const ForgotPassword: React.FC = () => {
             >
               {message}
             </p>
+            {loading && <p className="text-center">Loading...</p>}
             <div className="card-body">
               <form
                 className="w-75 m-auto"

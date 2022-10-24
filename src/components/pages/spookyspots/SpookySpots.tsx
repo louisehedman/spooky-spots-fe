@@ -5,6 +5,7 @@ import * as geolib from "geolib";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../../helpers/Urls";
 import { ISpookySpot } from "../../../interfaces/Interfaces";
+import Spinner from "../../../helpers/Spinner";
 
 const SpookySpots: React.FC = () => {
   const ratingStep = 1;
@@ -18,13 +19,14 @@ const SpookySpots: React.FC = () => {
     distanceMin,
     distanceMax,
   ]);
+  const [loading, setLoading] = useState(false);
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
   const [userLat, setUserLat] = useState<any>(null);
   const [userLon, setUserLon] = useState<any>(null);
 
   useEffect(() => {
     const getUserLocation = () => {
-      console.log("inside user location")
+      console.log("inside user location");
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
           setUserLat(position.coords.latitude);
@@ -34,13 +36,16 @@ const SpookySpots: React.FC = () => {
     };
 
     const fetchSpookySpots = async () => {
-      console.log("inside fetchSpookyspots")
+      console.log("inside fetchSpookyspots");
       try {
+        setLoading(true);
         await axios.get(API_URL("spookySpots")).then((response: any) => {
           setSpookySpots(response.data.spookySpots);
+          setLoading(false);
         });
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
     getUserLocation();
@@ -206,69 +211,73 @@ const SpookySpots: React.FC = () => {
       </div>
       <h2 className="my-3 text-center">Matching SpookySpots</h2>
       <ul className="list-unstyled">
-        {spookySpots.map((spookySpot: any) => {
-          if (
-            userLon != null &&
-            userLat != null &&
-            spookySpot.rating >= ratingValues[0] &&
-            spookySpot.rating <= ratingValues[1] &&
-            geolib.getDistance(
-              { longitude: userLon, latitude: userLat },
-              {
-                latitude: spookySpot.location.coordinates[1],
-                longitude: spookySpot.location.coordinates[0],
-              }
-            ) /
-              1000 >=
-              distanceValues[0] &&
-            geolib.getDistance(
-              { longitude: userLon, latitude: userLat },
-              {
-                latitude: spookySpot.location.coordinates[1],
-                longitude: spookySpot.location.coordinates[0],
-              }
-            ) /
-              1000 <=
-              distanceValues[1]
-          ) {
-            return (
-              <div
-                key={spookySpot._id}
-                className="card mt-2 rounded mb-4 border border-0 text-center text-white"
-                style={{ backgroundColor: "#0e284a" }}
-              >
-                <li className="mt-2">
-                  <h3>{spookySpot.name}</h3>
-                  <img
-                    className="img-fluid"
-                    src={`${spookySpot.image}`}
-                    alt={"picture of " + spookySpot.name}
-                    width="10px"
-                    style={{
-                      width: "250px",
-                      height: "250px",
-                    }}
-                  />
-                  <p className="w-75 m-auto py-2 h4">
-                    Rating: {spookySpot.rating}/5{" "}
-                    <i className="fa-solid fa-ghost" />
-                  </p>
-                  <h4 className="py-2">Address:</h4>
-                  <address>
-                    <p>{spookySpot?.address}</p>
-                    <p>{spookySpot?.postalCode}</p>
-                    <p>{spookySpot?.country}</p>
-                  </address>
-                  <Link to={"/spookyspots/" + spookySpot.name}>
-                    <button className="p-1 mx-1 my-3 btn btn-success">
-                      Find out more about {spookySpot.name}
-                    </button>
-                  </Link>
-                </li>
-              </div>
-            );
-          } else return null;
-        })}
+        {loading ? (
+          <Spinner />
+        ) : (
+          spookySpots.map((spookySpot: any) => {
+            if (
+              userLon != null &&
+              userLat != null &&
+              spookySpot.rating >= ratingValues[0] &&
+              spookySpot.rating <= ratingValues[1] &&
+              geolib.getDistance(
+                { longitude: userLon, latitude: userLat },
+                {
+                  latitude: spookySpot.location.coordinates[1],
+                  longitude: spookySpot.location.coordinates[0],
+                }
+              ) /
+                1000 >=
+                distanceValues[0] &&
+              geolib.getDistance(
+                { longitude: userLon, latitude: userLat },
+                {
+                  latitude: spookySpot.location.coordinates[1],
+                  longitude: spookySpot.location.coordinates[0],
+                }
+              ) /
+                1000 <=
+                distanceValues[1]
+            ) {
+              return (
+                <div
+                  key={spookySpot._id}
+                  className="card mt-2 rounded mb-4 border border-0 text-center text-white"
+                  style={{ backgroundColor: "#0e284a" }}
+                >
+                  <li className="mt-2">
+                    <h3>{spookySpot.name}</h3>
+                    <img
+                      className="img-fluid"
+                      src={`${spookySpot.image}`}
+                      alt={"picture of " + spookySpot.name}
+                      width="10px"
+                      style={{
+                        width: "250px",
+                        height: "250px",
+                      }}
+                    />
+                    <p className="w-75 m-auto py-2 h4">
+                      Rating: {spookySpot.rating}/5{" "}
+                      <i className="fa-solid fa-ghost" />
+                    </p>
+                    <h4 className="py-2">Address:</h4>
+                    <address>
+                      <p>{spookySpot?.address}</p>
+                      <p>{spookySpot?.postalCode}</p>
+                      <p>{spookySpot?.country}</p>
+                    </address>
+                    <Link to={"/spookyspots/" + spookySpot.name}>
+                      <button className="p-1 mx-1 my-3 btn btn-success">
+                        Find out more about {spookySpot.name}
+                      </button>
+                    </Link>
+                  </li>
+                </div>
+              );
+            } else return null;
+          })
+        )}
       </ul>
     </div>
   );

@@ -4,19 +4,24 @@ import { API_URL } from "../../../helpers/Urls";
 import { useEffect, useState } from "react";
 import { ISpookySpot } from "../../../interfaces/Interfaces";
 import { Link } from "react-router-dom";
+import Spinner from "../../../helpers/Spinner";
 
 const SpookySpotSlider: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
   const spookySpotsClone = [...spookySpots];
 
   useEffect(() => {
     const fetchSpookySpots = async () => {
       try {
+        setLoading(true);
         await axios.get(API_URL("spookyspots")).then((response: any) => {
           setSpookySpots(response.data.spookySpots);
+          setLoading(false);
         });
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
     fetchSpookySpots();
@@ -32,6 +37,7 @@ const SpookySpotSlider: React.FC = () => {
     <div className="container py-4 px-4 pt-4 text-white">
       <div className="card border-0" style={{ backgroundColor: "#0e284a" }}>
         <h2 className="text-center py-2">Most recently added SpookySpots</h2>
+        {loading ? <Spinner /> :
         <Carousel
           className="rounded w-100"
           style={{ backgroundColor: "#0e284a" }}
@@ -40,7 +46,7 @@ const SpookySpotSlider: React.FC = () => {
             .slice(0, 3)
             .map((spookySpot: ISpookySpot, index: any) => {
               return (
-                <Carousel.Item
+                 <Carousel.Item
                   className="text-center pt-4 carousel"
                   style={{
                     height: "500px",
@@ -76,9 +82,9 @@ const SpookySpotSlider: React.FC = () => {
                     </p>
                   </Carousel.Caption>
                 </Carousel.Item>
-              );
+                    );
             })}
-        </Carousel>
+        </Carousel>}
       </div>
     </div>
   );
