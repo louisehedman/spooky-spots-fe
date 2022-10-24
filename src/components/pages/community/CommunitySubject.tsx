@@ -79,13 +79,14 @@ const CommunitySubject: React.FC = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
-      });
+      })
       console.log("res: ", res);
       if (res.status === 200) {
         console.log(res);
         window.location.reload();
       } else {
         console.log("Some error occured");
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);
