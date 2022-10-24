@@ -6,7 +6,7 @@ import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
-//import { NetworkFirst } from "workbox-strategies";
+import { NetworkFirst } from "workbox-strategies";
 
 // Avoid TypeScript linter error
 export type {};
@@ -72,13 +72,13 @@ self.addEventListener("message", (event) => {
 });
 
 // Network first, falling back on cache strategy
-//registerRoute(({ url }) => url.pathname.startsWith("/"), new NetworkFirst());
+registerRoute(({ url }) => url.pathname.startsWith("/"), new NetworkFirst());
 
 // Stale-while-revalidate strategy
-registerRoute(
+/*registerRoute(
   ({url}) => url.pathname.startsWith('/'),
   new StaleWhileRevalidate()
-);
+);*/
 
 /*self.addEventListener("fetch", (event) => {
   if (event.request.destination === "image") {
