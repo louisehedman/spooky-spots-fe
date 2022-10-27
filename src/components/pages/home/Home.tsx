@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProvider";
+import Subscribe from "../subscription/Subscribe";
 import GhostTypes from "../ghosttypes/GhostTypes";
 import SpookySpotSlider from "./Slider";
 
@@ -42,6 +43,7 @@ const Home: React.FC = () => {
           . Our ghost hunters will check it out!
         </p>
       </div>
+      <Subscribe />
       <GhostTypes />
     </div>
   );
