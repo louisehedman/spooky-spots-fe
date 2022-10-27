@@ -29,6 +29,8 @@ import CommunityThread from './components/pages/community/CommunityThread';
 import ForgotPassword from './components/pages/login/ForgotPassword';
 import ResetPassword from './components/pages/login/ResetPassword';
 import PageNotFound from './components/pagenotfound/PageNotFound';
+import Unsubscribe from './components/pages/subscription/Unsubscribe';
+import CreateNewsletters from './components/pages/dashboard/CreateNewsletters';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -44,6 +46,7 @@ root.render(
         <Route path="/login" element={<LoginForm />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/passwordreset/:slug" element={<ResetPassword />} />
+        <Route path="/unsubscribe/:slug" element={<Unsubscribe/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/spookyspots" element={<SpookySpots />} />
         <Route path="/spookymap" element={<SpookyMap />} />
@@ -52,6 +55,7 @@ root.render(
         <Route path="/ghosttypes/:slug" element={<GhostType />} />
         <Route path="/dashboard/handleusers" element={<HandleUsers />} />
         <Route path="/dashboard/handleusers/edituser/:slug" element={<EditUser />} />
+        <Route path="/dashboard/createnewsletters" element={<CreateNewsletters />} />
         <Route path="/dashboard/spookyspotlist" element={<SpookySpotList/>} />
         <Route path="/dashboard/spookyspotlist/editlistitem/:userId/:listItemId" element={<EditListItem />} />
         <Route path="/dashboard/managesettings" element={<ManageSettings />} />
