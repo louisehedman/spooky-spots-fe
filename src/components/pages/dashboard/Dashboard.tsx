@@ -57,11 +57,15 @@ const Dashboard: React.FC = () => {
               <p className="card-title dashboard-title h4">
                 Welcome to your dashboard
               </p>
+              {auth?.admin && (
+                <h5 className="card-subtitle">You are signed in as admin</h5>
+              )}
             </div>
-
-            {auth?.admin && (
-              <h5 className="card-subtitle">You are signed in as admin</h5>
-            )}
+            <div className="mx-3 my-3">
+              <Link className="text-white h5 btn btn-success" to="/community">
+                Go to community
+              </Link>
+            </div>
             <div className="card-body">
               <h5 className="card-title">Here you can:</h5>
               <ul className="list-group list-group-flush">
