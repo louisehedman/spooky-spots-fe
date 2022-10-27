@@ -31,6 +31,7 @@ import ResetPassword from './components/pages/login/ResetPassword';
 import PageNotFound from './components/pagenotfound/PageNotFound';
 import Unsubscribe from './components/pages/subscription/Unsubscribe';
 import CreateNewsletters from './components/pages/dashboard/CreateNewsletters';
+import Newsletters from './components/pages/newsletters/Newsletters';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -53,6 +54,7 @@ root.render(
         <Route path="/spookyspots/:slug" element={<SpookySpot />} />
         <Route path="/ghosttypes" element={<GhostTypes />} />
         <Route path="/ghosttypes/:slug" element={<GhostType />} />
+        <Route path="/newsletters" element={<Newsletters />} />
         <Route path="/dashboard/handleusers" element={<HandleUsers />} />
         <Route path="/dashboard/handleusers/edituser/:slug" element={<EditUser />} />
         <Route path="/dashboard/createnewsletters" element={<CreateNewsletters />} />

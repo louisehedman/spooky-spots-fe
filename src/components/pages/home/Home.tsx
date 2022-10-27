@@ -44,6 +44,15 @@ const Home: React.FC = () => {
         </p>
       </div>
       <Subscribe />
+      <div className="row">
+          <div className="col text-center mt-3">
+            <p className="btn btn-primary mb-4 w-50">
+              <Link to="/newsletters" style={{ color: "white" }}>
+                Read archived newsletters
+              </Link>
+            </p>
+          </div>
+        </div>
       <GhostTypes />
     </div>
   );
