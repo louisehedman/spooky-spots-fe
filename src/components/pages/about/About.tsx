@@ -1,4 +1,4 @@
-const Spinner: React.FC = () => {
+const About: React.FC = () => {
   return (
     <div
       className="container rounded text-white my-4 py-4"
@@ -70,4 +70,4 @@ const Spinner: React.FC = () => {
   );
 };
 
-export default Spinner;
+export default About;
