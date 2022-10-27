@@ -127,7 +127,7 @@ const CreateNewsletter: React.FC = () => {
             <div className="card-body">
               <form
                 className="w-75 m-auto"
-                onSubmit={(e) => handleSubmit(e, API_URL("newsletter"))}
+                onSubmit={(e) => handleSubmit(e, API_URL("newsletters"))}
               >
                 <div className="form-group">
                   <label htmlFor="subject" className="h6">
