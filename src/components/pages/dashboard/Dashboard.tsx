@@ -72,6 +72,13 @@ const Dashboard: React.FC = () => {
                     </Link>
                   </li>
                 )}
+                {auth?.admin && (
+                  <li className="list-group-item h5">
+                    <Link className="link-dark" to="createnewsletters">
+                      Create Newsletters
+                    </Link>
+                  </li>
+                )}
                 <li className="list-group-item h5">
                   <Link to="spookyspotlist" className="link-dark">
                     Handle your saved spooky spots
