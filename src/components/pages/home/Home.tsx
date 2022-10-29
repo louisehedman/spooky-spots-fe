@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProvider";
+import Subscribe from "../subscription/Subscribe";
 import GhostTypes from "../ghosttypes/GhostTypes";
 import SpookySpotSlider from "./Slider";
 
@@ -42,6 +43,16 @@ const Home: React.FC = () => {
           . Our ghost hunters will check it out!
         </p>
       </div>
+      <Subscribe />
+      <div className="row">
+          <div className="col text-center mt-3">
+            <p className="btn btn-primary mb-4 w-50">
+              <Link to="/newsletters" style={{ color: "white" }}>
+                Read archived newsletters
+              </Link>
+            </p>
+          </div>
+        </div>
       <GhostTypes />
     </div>
   );

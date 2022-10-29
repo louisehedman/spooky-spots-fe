@@ -114,3 +114,15 @@ export interface IComment {
   content: string;
   createdAt: Date;
 }
+
+export interface ISubscriber {
+  _id: string;
+  email: string;
+}
+
+export interface INewsletter {
+  _id: string;
+  subject: string;
+  message: string;
+  createdAt: Date;
+}
