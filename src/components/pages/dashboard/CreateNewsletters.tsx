@@ -145,7 +145,7 @@ const CreateNewsletter: React.FC = () => {
                   />
                   <div className="form-group">
                     <label htmlFor="message" className="d-block h6">
-                      New message:
+                      New message, HTML format:
                     </label>
                     <textarea
                       className="col-12"

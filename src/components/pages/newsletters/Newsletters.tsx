@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Parser from 'html-react-parser';
 import Spinner from "../../../helpers/Spinner";
 import { API_URL } from "../../../helpers/Urls";
 import { INewsletter } from "../../../interfaces/Interfaces";
@@ -75,7 +76,7 @@ const Newsletters: React.FC = () => {
                 </p>
               </div>
               <div className="card-body">
-                <p>{newsletter.message}</p>
+                <p>{Parser(newsletter.message)}</p>
               </div>
             </div>
           );
