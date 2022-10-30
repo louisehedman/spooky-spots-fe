@@ -20,6 +20,7 @@ You find the backend source code (Node, Express, MongoDB, TypeScript) [here](htt
 **Server:** Node, Express, MongoDB, Mongoose, TypeScript, NodeMailer
 
 ## **Compability**
+
 ## Devices
 - Laptop devices
 - Mobile devices
