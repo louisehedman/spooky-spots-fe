@@ -1,3 +1,4 @@
+// Spinner to be shown at loading
 const Spinner: React.FC = () => {
   return (
     <div className="text-center">

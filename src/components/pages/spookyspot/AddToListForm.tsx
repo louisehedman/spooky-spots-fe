@@ -26,6 +26,7 @@ const AddToListForm: React.FC<Props> = ({ spookySpotId, setAddedToList }) => {
     console.log(boolValue);
   };
 
+  // Add a SpookySpot to SpookySpotList on dashboard
   const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
     e.preventDefault();
     try {

@@ -32,6 +32,7 @@ const ForgotPassword: React.FC = () => {
     });
   };
 
+  // Send email with password reset link
   const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
     // Prevents reloading of page on submit
     e.preventDefault();

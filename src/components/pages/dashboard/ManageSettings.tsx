@@ -6,6 +6,7 @@ import { IEditSettings, IUser } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../../auth/AuthProvider";
 
 const ManageSettings: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [user, setUser] = useState<IUser>();
   const [state, setState] = useState<IEditSettings>({
@@ -17,12 +18,14 @@ const ManageSettings: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // If not authorized redirect to login
   useEffect(() => {
     if (!auth?.auth()) {
-      navigate("/");
+      navigate("/login");
     }
 
     const getUser = async () => {
+      // Get and set signed in user
       try {
         const res = await axios.get(API_URL("user"), {
           method: "GET",
@@ -59,6 +62,7 @@ const ManageSettings: React.FC = () => {
     console.log(value);
   };
 
+  // Change email and/or password
   const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
     // Prevents reloading of page on submit
     e.preventDefault();

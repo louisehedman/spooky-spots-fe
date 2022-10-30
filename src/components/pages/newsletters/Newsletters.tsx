@@ -14,6 +14,7 @@ const Newsletters: React.FC = () => {
   const postsPerPage = 3;
 
   useEffect(() => {
+    // Get and set all archived newsletters
     const fetchNewsletters = async () => {
       try {
         setLoading(true);

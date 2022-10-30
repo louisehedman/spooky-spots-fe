@@ -8,11 +8,17 @@ import { ISpookySpot } from "../../../interfaces/Interfaces";
 import Spinner from "../../../helpers/Spinner";
 
 const SpookySpots: React.FC = () => {
+  // Value increase for each step on range
   const ratingStep = 1;
+  // Value increase for each step on range
   const distanceStep = 1;
+  // Minimum SpookySpot rating value
   const ratingMin = 1;
+  // Maximum SpookySpot rating value
   const ratingMax = 5;
+  // Minimum SpookySpot distance from user value
   const distanceMin = 0;
+  // Maximum SpookySpot distance from user value
   const distanceMax = 20004;
   const [ratingValues, setRatingValues] = useState([ratingMin, ratingMax]);
   const [distanceValues, setDistanceValues] = useState([
@@ -25,8 +31,8 @@ const SpookySpots: React.FC = () => {
   const [userLon, setUserLon] = useState<any>(null);
 
   useEffect(() => {
+    // Get user location
     const getUserLocation = () => {
-      console.log("inside user location");
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
           setUserLat(position.coords.latitude);
@@ -36,7 +42,7 @@ const SpookySpots: React.FC = () => {
     };
 
     const fetchSpookySpots = async () => {
-      console.log("inside fetchSpookyspots");
+      // Get and set SpookySpots
       try {
         setLoading(true);
         await axios.get(API_URL("spookySpots")).then((response: any) => {

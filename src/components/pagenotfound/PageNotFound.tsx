@@ -1,5 +1,5 @@
 const PageNotFound: React.FC = () => {
-  // This page will show if user navigate to a non-existing page
+  // This page will be shown if user navigate to a non-existing page
   return (
     <div
       className="container rounded text-white my-4 py-4"

@@ -25,6 +25,7 @@ const Subscribe: React.FC = () => {
     });
   };
 
+  // Subscribe to newsletter
   const handleSubmit = async (e: React.SyntheticEvent, url: string) => {
     // Prevents reloading of page on submit
     e.preventDefault();

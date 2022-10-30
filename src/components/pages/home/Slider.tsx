@@ -9,9 +9,11 @@ import Spinner from "../../../helpers/Spinner";
 const SpookySpotSlider: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [spookySpots, setSpookySpots] = useState<ISpookySpot[]>([]);
+  // clone spookySpots array
   const spookySpotsClone = [...spookySpots];
 
   useEffect(() => {
+    // Get and set SpookySpots
     const fetchSpookySpots = async () => {
       try {
         setLoading(true);
@@ -27,6 +29,7 @@ const SpookySpotSlider: React.FC = () => {
     fetchSpookySpots();
   }, []);
 
+  // Sort by createdAt and reverse to let most recently added come first
   spookySpotsClone
     .sort((a, b) =>
       a.createdAt.toString().localeCompare(b.createdAt.toString())
@@ -42,6 +45,7 @@ const SpookySpotSlider: React.FC = () => {
           className="rounded w-100"
           style={{ backgroundColor: "#0e284a" }}
         >
+          {/* Show only the three most recently added SpookySpots */}
           {spookySpotsClone
             .slice(0, 3)
             .map((spookySpot: ISpookySpot, index: any) => {

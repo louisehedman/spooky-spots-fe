@@ -7,17 +7,20 @@ import { AuthContext } from "../../../auth/AuthProvider";
 import ListItem from "./ListItem";
 
 const SpookySpotList: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [user, setUser] = useState<IUser>();
 
   const navigate = useNavigate();
 
+  // If not authorized redirect to login
   useEffect(() => {
     if (!auth?.auth()) {
-      navigate("/");
+      navigate("/login");
     }
 
     const getUser = async () => {
+      // Get and set signed in user
       try {
         const res = await axios.get(API_URL("user"), {
           method: "GET",

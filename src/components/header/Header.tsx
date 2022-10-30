@@ -5,6 +5,7 @@ import SearchSpookySpot from "../searchspookyspot/SearchSpookySpot";
 import "./Header.css";
 
 const Header: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
 
   return (

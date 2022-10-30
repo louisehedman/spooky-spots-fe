@@ -17,6 +17,7 @@ const ListItem: React.FC<Props> = ({ listItem, userId }) => {
   const listItemId = listItem._id;
 
   useEffect(() => {
+    // Get and set list item
     const getSpookySpot = async () => {
       await axios
         .get(API_URL(`spookyspots/${listItem.spookySpotId}`))

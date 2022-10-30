@@ -6,6 +6,7 @@ import { ICreateUser, IUser } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../../auth/AuthProvider";
 
 const HandleUsers: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [users, setUsers] = useState<IUser[]>([]);
   const messageRef = useRef<HTMLParagraphElement | null>(null);
@@ -19,6 +20,7 @@ const HandleUsers: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // If not authorized redirect to login
   useEffect(() => {
     if (!auth?.admin) {
       navigate("/login");
@@ -26,6 +28,7 @@ const HandleUsers: React.FC = () => {
   });
 
   useEffect(() => {
+    // Get and set users
     const fetchUsers = async () => {
       try {
         const res = await axios.get(API_URL("users"), {

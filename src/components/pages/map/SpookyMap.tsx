@@ -28,6 +28,7 @@ const SpookyMap: React.FC = () => {
   const center = fromLonLat([14.662, 59.957]);
 
   useEffect(() => {
+    // Get user location
     const getUserLocation = () => {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
@@ -40,9 +41,8 @@ const SpookyMap: React.FC = () => {
     getUserLocation();
   }, [userLat, userLon]);
 
-  console.log(userCoords);
-
   useEffect(() => {
+    // Get and set SpookySpots
     const fetchSpookySpots = async () => {
       try {
         setLoading(true);

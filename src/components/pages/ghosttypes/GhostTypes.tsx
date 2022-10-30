@@ -10,6 +10,7 @@ const GhostTypes: React.FC = () => {
   const [ghostTypes, setGhostTypes] = useState<IGhostType[]>([]);
 
   useEffect(() => {
+    // Get and set ghost types
     const fetchGhostTypes = async () => {
       try {
         setLoading(true);

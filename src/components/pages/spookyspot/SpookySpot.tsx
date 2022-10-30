@@ -12,6 +12,7 @@ const SpookySpot: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Get and set SpookySpot
     const getSpookySpot = async () => {
       await axios.get(API_URL(`spookyspots/${slug}`)).then((res) => {
         setSpookySpot({
