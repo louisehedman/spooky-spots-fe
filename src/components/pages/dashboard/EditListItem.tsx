@@ -13,6 +13,7 @@ export interface Props {
 }
 
 const EditListItem: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [listItem, setListItem] = useState<ISpookySpotListItem>();
   const [state, setState] = useState<IEditListItem>({
@@ -26,6 +27,7 @@ const EditListItem: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // If not authorized navigate to login
   useEffect(() => {
     if (!auth?.auth()) {
       navigate("/login");
@@ -33,6 +35,7 @@ const EditListItem: React.FC = () => {
   });
 
   useEffect(() => {
+    // Get and set list item
     const fetchUser = async () => {
       try {
         const res = await axios.get(API_URL(`get-list/${listItemId}`), {

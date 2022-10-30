@@ -7,6 +7,7 @@ import { AuthContext } from "../../../auth/AuthProvider";
 import Post from "./Post";
 
 const CommunityThread: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [thread, setThread] = useState<ICommunityThread>();
   const [posts, setPosts] = useState([]);
@@ -15,13 +16,15 @@ const CommunityThread: React.FC = () => {
     text: "",
   });
   const { threadId } = useParams();
+  // Format thread created at to locale date and time
   const formatedThreadDate = useMemo(
     () => new Date(thread?.createdAt as any).toLocaleString(),
     [thread?.createdAt]
   );
 
   const navigate = useNavigate();
-
+  
+  // If not authorized redirect to login
   useEffect(() => {
     if (!auth?.auth()) {
       navigate("/login");
@@ -29,6 +32,7 @@ const CommunityThread: React.FC = () => {
   });
 
   useEffect(() => {
+    // Get and set thread
     const fetchCommunityThread = async () => {
       try {
         const res = await axios.get(API_URL(`communitythreads/${threadId}`), {
@@ -47,6 +51,7 @@ const CommunityThread: React.FC = () => {
   }, [threadId]);
 
   useEffect(() => {
+    // Get and set posts in thread
     const fetchPosts = async () => {
       try {
         const res = await axios.get(

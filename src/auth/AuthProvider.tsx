@@ -46,7 +46,6 @@ const AuthProvider = ({ children }: any) => {
       );
       if (res.status === 200) {
         setSignedIn(false);
-        //setIsAdmin("");
         localStorage.removeItem("signedIn");
         localStorage.removeItem("username");
         localStorage.removeItem("isAdmin");
@@ -59,7 +58,6 @@ const AuthProvider = ({ children }: any) => {
   // Gathers them in a variable we can pass as a value to the children
   const provider = {
     signedIn,
-    //isAdmin,
     admin,
     defaultUser,
     handleLogin,

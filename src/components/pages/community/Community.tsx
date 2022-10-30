@@ -6,17 +6,20 @@ import { ICommunitySubject } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../../auth/AuthProvider";
 
 const Community: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [communitySubjects, setCommunitySubjects] = useState<ICommunitySubject[]>([]);
   const navigate = useNavigate();
 
+  // If not authorized redirect to login
   useEffect(() => {
     if (!auth?.auth()) {
-      navigate("/");
+      navigate("/login");
     }
   });
 
   useEffect(() => {
+    // Get and set community subjects
     const fetchCommunitySubjects = async () => {
       try {
         const res = await axios.get(API_URL("communitysubjects"), {

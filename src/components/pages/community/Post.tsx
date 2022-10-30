@@ -10,6 +10,7 @@ interface Props {
 }
 
 const Post: React.FC<Props> = ({ post }) => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [comments, setComments] = useState<IComment[]>([]);
   const [showComments, setShowComments] = useState<boolean>(false);
@@ -19,6 +20,7 @@ const Post: React.FC<Props> = ({ post }) => {
   const postId = post._id;
 
   useEffect(() => {
+    // Get and set post comments
     const fetchComments = async () => {
       try {
         const res = await axios.get(API_URL(`posts/${postId}/comments`), {
@@ -67,6 +69,7 @@ const Post: React.FC<Props> = ({ post }) => {
     }
   };
 
+  // Delete a post
   const deletePost = async (id: string | undefined) => {
     return axios
       .delete(API_URL(`posts/${id}`), {
@@ -83,6 +86,7 @@ const Post: React.FC<Props> = ({ post }) => {
       });
   };
 
+  // Delte a comment
   const deleteComment = async (id: string | undefined) => {
     return axios
       .delete(API_URL(`comments/${id}`), {

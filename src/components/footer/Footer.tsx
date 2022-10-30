@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
     return (
-        <>
         <footer className="bg-dark text-white pt-5 pb-4 bg-opacity-75">
         <div className="container text-center text-md-left">
           <div className="row text-center text-md-left">
@@ -151,7 +150,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </footer>
-        </>
     )
 }
 

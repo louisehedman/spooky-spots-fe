@@ -14,6 +14,37 @@ You find the backend source code (Node, Express, MongoDB, TypeScript) [here](htt
 
 ---
 
+## **Role-Based Access Control**
+In the application users can be of type website user (no account or not signed in), registered user and admin.
+
+A website user has access to: 
+- Read about SpookySpots
+- Read about ghost types
+- See own location and SpookySpots location on map
+- Read archived newsletters
+- Search SpookySpots in navbar search box and perform advanced search on SpookySpots page
+- Register
+- Sign in
+- Subscribe to newsletter
+- Read about page
+
+A registered user who has forgotten password can receive a password reset email. 
+
+A registered signed in user has access to:
+- Personal dashboard
+- Save a SpookySpot (+ write an optional note and specify whether has visited or not) to SpookySpotList 
+- On dashboard see saved SpookySpots in SpookySpotList and perform CRUD on the list
+- Community and there read and create threads, posts and comments. Delete own posts and comments  
+- Change email and password on dashboard
+- Sign out
+
+An admin can do all above and: 
+- On dashboard get a list of all users and perform CRUD on them (edit user role, edit email and delete a user)
+- On dashboard receive a list of all emails in newsletter subscription list and create and send out newsletters by email
+- In community delete any post or comment 
+
+---
+
 ## **Tech Stack**
 
 **Client:** React, TypeScript, Bootstrap   

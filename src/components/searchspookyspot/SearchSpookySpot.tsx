@@ -21,6 +21,7 @@ const SearchSpookySpot: React.FC = () => {
   };
 
   useEffect(() => {
+    // Get and set SpookySpots
     if (spookySpots.length === 0) {
       try {
         axios.get(API_URL("spookySpots")).then((response: any) => {

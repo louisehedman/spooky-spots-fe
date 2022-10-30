@@ -8,6 +8,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
   const { totalPosts, postsPerPage, paginate } = props;
   const pageNumbers = [];
 
+  // Create pagination based on postsPerPage condition in Newsletter component
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }

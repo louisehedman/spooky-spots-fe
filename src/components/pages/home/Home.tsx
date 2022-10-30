@@ -6,6 +6,7 @@ import GhostTypes from "../ghosttypes/GhostTypes";
 import SpookySpotSlider from "./Slider";
 
 const Home: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
 
   return (

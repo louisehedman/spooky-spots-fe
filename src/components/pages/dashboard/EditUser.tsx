@@ -6,6 +6,7 @@ import { IEditUser, IUser } from "../../../interfaces/Interfaces";
 import { AuthContext } from "../../../auth/AuthProvider";
 
 const EditUser: React.FC = () => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [user, setUser] = useState<IUser>();
   const [state, setState] = useState<IEditUser>({
@@ -17,6 +18,7 @@ const EditUser: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // If not authorized redirect to login
   useEffect(() => {
     if (!auth?.admin) {
       navigate("/login");
@@ -24,6 +26,7 @@ const EditUser: React.FC = () => {
   });
 
   useEffect(() => {
+    // Get and set a user
     const fetchUser = async () => {
       try {
         const res = await axios.get(API_URL(`users/${slug}`), {

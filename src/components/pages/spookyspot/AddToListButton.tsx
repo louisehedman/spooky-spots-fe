@@ -9,6 +9,7 @@ export interface Props {
 }
 
 const AddToListButton: React.FC<Props> = ({ spookySpotId }) => {
+  // Use the variables and functions from the AuthContext
   const auth = useContext(AuthContext);
   const [addedToList, setAddedToList] = useState(false);
 

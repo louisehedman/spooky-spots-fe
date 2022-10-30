@@ -11,6 +11,7 @@ const GhostType: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Get and set a ghost type
     const getGhostType = async () => {
       await axios.get(API_URL(`ghosttypes/${slug}`)).then((res) => {
         setGhostType({
