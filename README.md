@@ -1,6 +1,82 @@
-# Getting Started with Create React App
+# SpookySpots
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Find haunted places and talk about spooky stuff with others**
+
+Explore haunted places (SpookySpots), learn about ghost types, possibility to save SpookySpots in your own list and of course a great community fullfills a ghost fan's every wish!
+
+---
+
+## **About this project**
+
+This is a school assignment for Fullstack Developer students at Chas Academy. The aim of the assignment was to go from an idea to a finished product with a code base in MERN-stack and TypeScript. The app's content is developed based on a user analysis, personas and user stories have their basis in the analysis. SpookySpots is the result. This is the frontend part of the project. This frontend is deployed at [Netlify](https://spookyspots.netlify.app/).
+
+You find the backend source code (Node, Express, MongoDB, TypeScript) [here](https://github.com/louisehedman/spooky-spots-be) which is deployed at [Render](https://spooky-spots.onrender.com/). Instructions for how to set up the backend part of this project can be found in the backend repo.
+
+---
+
+## **Tech Stack**
+
+**Client:** React, TypeScript, Bootstrap   
+**Server:** Node, Express, MongoDB, Mongoose, TypeScript, NodeMailer
+
+## **Compability**
+## Devices
+- Laptop devices
+- Mobile devices
+---
+## Browsers
+- Chrome
+- Firefox
+- Safari
+- Edge
+---
+
+## PWA
+The whole app is a PWA supported by both Android and iOS. It can also be used offline since it's saving cache to use at such occasions, with some limitations in functionality as it cannot make calls to API in offline mode. The cache saving has benefits in online mode too, the app will load much faster.
+
+--- 
+
+## **Project Setup**
+Clone the project and navigate to the root folder in your terminal. Run `npm install` to install dependencies. 
+
+### Environment Variables 
+
+To run this project, you will also need to create a `.env` file and add the following environment variable:
+
+`REACT_APP_API_URL=`*`"backend-URL"`*
+
+### Run locally
+
+To start the server run `$ npm start` in terminal
+
+## Visit deployed app
+
+Visit the deployed app at Netlify [here](http://spookyspots.netlify.app/)
+
+---
+## Documentation
+
+- [Project idea](https://docs.google.com/document/d/1xlA0KhgWXEDwzU2vBi10hzIoo3GTTcoM4uRHSIlAMRo/edit?usp=sharing)
+- [User analysis](https://docs.google.com/document/d/14jzJ80gSEh5xJ8M9CejJ5BoPfHvjv1ODgnNp2ICRifM/edit?usp=sharing)
+- [Personas](https://docs.google.com/presentation/d/1vXBdDpWg93oUyjTk0OPy3TePZUFMP931PTgRTl7yLP0/edit?usp=sharing)
+- [User stories](https://docs.google.com/document/d/1BDR_mWRZHppKYLYWMY7V96VUQ1t_vBZZHrExCKLeXRM/edit?usp=sharing)
+- [Wireframes](<https://docs.google.com/document/d/1dHvbatFPZrLj2D7db1ZHIhfPU_jsDvV8MmIrfX-0hU8/edit?usp=sharing>)
+- [Figma](<https://www.figma.com/file/10mZYkxzzgh3iFCNoKC1WU/U09-SpookySpots?node-id=0%3A1>)
+- [Sitemap](<https://docs.google.com/document/d/1pF7VYL4ZE50rU6XKTsq1u0SwSGDQJDSqxn-DVt6zFcM/edit?usp=sharing>)
+
+---
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+---
+
+## 👻 **Author**
+
+Louise Hedman [@louisehedman](https://www.github.com/louisehedman)
+
+---
 
 ## Available Scripts
 
