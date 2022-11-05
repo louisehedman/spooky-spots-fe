@@ -14,7 +14,7 @@ You find the backend source code (Node, Express, MongoDB, TypeScript) [here](htt
 
 ---
 
-## **Role-Based Access Control**
+## **Role-Based System**
 In the application users can be of type website user (no account or not signed in), registered user and admin.
 
 A website user has access to: 
@@ -97,6 +97,12 @@ Visit the deployed app at Netlify [here](http://spookyspots.netlify.app/)
 - [Sitemap](<https://docs.google.com/document/d/1pF7VYL4ZE50rU6XKTsq1u0SwSGDQJDSqxn-DVt6zFcM/edit?usp=sharing>)
 
 ---
+## **API reference**
+
+Full API documentation is found here: [https://spookyspots-api.netlify.app/](<https://spookyspots-api.netlify.app/>)
+
+---
+
 
 ## License
 
